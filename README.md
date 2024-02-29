@@ -1,1 +1,1 @@
-Šio projekto pagrindinė idėja - sukurti programėlę mobiliems įrenginiams, kurios pagalba silpniau matantys žmonės galėtų nuskenuoti parduotuvėje esantį prekės barkodą ir pamatyti produkto aprašymą didesniu šriftu.
+Projekto idėja - sukurti internetinę programėlę, skirtą naudotis silpnaregiams arba prastai matantiems senjorams, kurie turėdami mobilųjį telefoną, nuskenuotų prekės brūkšninį kodą ir savo telefono ekrane galėtų matyti visą informaciją padidintu šriftu. 
