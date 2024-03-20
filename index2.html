@@ -1,0 +1,259 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+    <!-- Latest compiled and minified CSS -->
+<!--<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css"> -->
+<!-- jQuery library -->
+<!--<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>-->
+<!-- Latest compiled JavaScript -->
+<!--<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+<link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+<script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>-->
+
+    <style>
+        
+    #div1{background-color: #1347AD;
+        text-align: center;
+         font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serifa; 
+         font-size: xx-large; 
+         height:100px;
+          width: 100%; 
+          padding: 20px;
+        margin-bottom: 10px;
+        }
+        #div1 h1{
+            margin-top: 10px;
+
+        }
+        p{
+            font-size: x-large;
+            font-weight: 700;
+        }
+    #div2{background-color: #366BD4;
+        padding: 30px;
+        margin-bottom: 10px;
+        text-align: center;
+        border-radius: 20px;
+        max-width: 600px; /* Set maximum width for the div */
+      margin: 50px auto 0  ; /* Center the div horizontally */
+    }
+    #div21{background-color: #366BD4;
+        padding: 30px;
+        margin-bottom: 10px;
+        text-align: center;
+        max-width: 600px;
+        margin: 50px auto 0;
+        border-radius: 20px; 
+        /* Set maximum width for the div */
+       /* Center the div horizontally */
+    }
+
+    .dot {
+  height: 25px;
+  width: 25px;
+  background-color: #bbb;
+  border-radius: 50%;
+  display: inline-flex;
+}
+
+    #div3{background-color: #5B70DF;}
+    #div4{background-color: #97B4EC;}
+    #icon{float: left;}
+
+    .bullet1 {
+            color: blue; /* Change the color of the bullet points */
+            margin-right: 20px; /* Add some space between the bullet points and text */
+            font-size: 60px;
+        }
+        .bullet2 {
+            color: red; /* Change the color of the bullet points */
+            margin-right: 20px; /* Add some space between the bullet points and text */
+            font-size: 60px;
+        }
+
+        /* Style for the text */
+        .text {
+            text-align: center;
+            color: black; /* Keep the text color black */
+            word-spacing: 5px;
+            font-size: 35px;
+        }
+    </style>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="Digital Clock.css">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+
+    <title>Document</title>
+</head>
+<body>
+
+<div class= "container-fluid" >
+   <div style="background-color: #1347AD ; " class="row"> 
+    <div class="col-lg-2">
+      <!--<h1 class = "mb-4">Film List</h1>-->  
+        <img  src="{{.ImageURL}}" style="width: 40px; height: 40px"> 
+    </div>
+    <div class="col-lg-8">
+        <h1  style="text-align:center;">Film List</h1>
+        
+    </div>
+     <!--ATSIJUNGTI -->
+    <div  style="text-align: right" class="col-lg-1">
+        <h3 >Atsijungti</h3>
+        
+    </div>
+
+    <div class="col-lg-1">
+        <!--Naudotojo burbulas -->
+       <img  src="{{.Avatar}}" style=" float:right;width: 55px; height: 55px" alt="Labas"> 
+    </div>
+    
+    </div> <!--class="row"-->
+</div>     <!--class="container"-->
+
+<!--------------------------------------------KONTEINERIO ATSKYRIMAS------------------------------------------------------------->
+
+
+<div class="container-fluid">
+    
+<div class="row"> 
+    <div class="col-lg-3">
+    <h3 style = "margin-top: 20px;"> Naudotojų skaičius: 0 </h3> 
+    
+        
+      <!--------------------------------------------DIAGRAMA PRADŽIA------------------------------------------------------------->
+      <div id="piechart"></div>
+
+      <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+      
+      <script type="text/javascript">
+      // Load google charts
+      google.charts.load('current', {'packages':['corechart']});
+      google.charts.setOnLoadCallback(drawChart);
+      
+      // Draw the chart and set the chart values
+      function drawChart() {
+        var data = google.visualization.arrayToDataTable([
+        ['Task', "Labas"],
+        ['Prenumerave', 1],
+        ['Neprenumerave', 100],
+        
+      ]);
+      
+        // Optional; add a title and set the width and height of the chart
+        var options = {'title':'Prenumeratų skaičius', 'width':600, 'height':500};
+      
+        // Display the chart inside the <div> element with id="piechart"
+        var chart = new google.visualization.PieChart(document.getElementById('piechart'));
+        chart.draw(data, options);
+      }
+      </script>
+      <!--------------------------------------------DIAGRAMA PABAIGA------------------------------------------------------------->
+      <!-- Čia reikia spalvotų taškiukų diagramai-->
+
+      <div style="text-align: center;">
+        <!-- Using HTML entity &bull; for bullet points -->
+        <span class="bullet1">&bull;</span>
+        <span class="text">Prenumerave</span>
+    </div>
+    <div style="margin-left: 140px;">
+        <span class="bullet2">&bull;</span>
+        <span class="text">Neprenumerave</span>
+    </div>
+    
+
+       <!--------------------------------------------LAIKRODIS PRADŽIA------------------------------------------------------------->
+           
+       <script type="text/javascript">
+        function clock(){
+
+            var monthNames = ["01","02","03","04","05","06","07","08","09","10","11","12",];
+            var dayNames= ["Sekmadienis","Pirmadienis","Antradienis","Trečiadienis","Ketvirtadienis","Penktadienis","Šeštadienis" ];
+
+            var today = new Date();
+
+            document.getElementById('Date').innerHTML = (today.getFullYear() + ' ' + monthNames[today.getMonth()] + ' '+ today.getDate() );
+
+            var h = today.getHours();
+            var m = today.getMinutes();
+            var s = today.getSeconds();
+            
+
+            h = h<10? '0' + h: h;
+            m = m<10? '0' + m: m;
+            s = s<10? '0' + s: s;
+            
+            document.getElementById('hours').innerHTML = h;document.getElementById('min').innerHTML = m;document.getElementById('sec').innerHTML = s;
+        }var inter = setInterval(clock, 400);
+
+
+        </script>
+        
+        <div style="margin-top: 110px; margin-left: 150px;font-size: 20px; " class="clock">
+            <div style="display: inline; font-size: x-large; font-weight: 700; margin-bottom: 20px; font-size: 40px;" id="Date"> 2001-12-10</div>
+             
+               <!-- <li id="hours">05</li> <li id="point">:</li><li id="min">20</li><li id="point">:</li><li id="sec">30</li>-->
+               <p style="display: inline; margin-bottom: 20px; font-size: 40px;" id="hours">05</p><p style="display: inline; font-size: 40px;" id="point">:</p><p style="display: inline; font-size: 40px;" id="min">20</p>
+               <!--<p style="display: inline;" id="point">:</p>-->
+               <!--<p style="display: inline;" id="sec">30</p>-->
+            
+            </div>
+        <script src="Digital Clock.js"></script>
+
+                
+                
+        
+        <!--------------------------------------------LAIKRODIS PABAIGA------------------------------------------------------------->
+       </div>
+
+
+        <div  class="col-lg-6">
+
+            <div id="div2" >
+                <!--<h1 class = "mb-4">Film List</h1>    -->  
+                  <img id="icon" src="{{.Parduotuve}}" style="width: 40px; height: 40px " alt="cart"> 
+                  <h3> Produktų duomenų bazė </h3>
+              </div>
+
+
+            <div id="div2">
+            <!--<h1 class = "mb-4">Film List</h1>-->  
+              <img id="icon" src="{{.Atsiliepimai}}" style="width: 40px; height: 40px"  alt="response"> 
+              <h3> Atsiliepimai </h3>
+            </div>
+    
+            <div id="div2">
+                <!--<h1 class = "mb-4">Film List</h1>-->  
+                  <img id="icon" src="{{.Nustatymai}}" style="width: 40px; height: 40px" alt="setting">  
+                  <h3> Nustatymai </h3>
+                </div>
+        
+                <div id="div2">
+                <!--<h1 class = "mb-4">Film List</h1>-->  
+                  <img id="icon" src="{{.Ataskaita}}" style="width: 40px; height: 40px" alt="Ataskaita"> 
+                 <h3>Ataskaita(Įspėjimai)</h3>
+                </div>
+                <div id="div2">
+                <!--<h1 class = "mb-4">Film List</h1>-->  
+                  <img id="icon" src="{{.Apie}}" style="width: 40px; height: 40px" alt="Apie"> 
+                  <h3>Apie</h3>
+                </div>
+          </div>
+ <!--------------------------------------------LENTELĖ PRADŽIA------------------------------------------------------------->
+
+
+  <!--------------------------------------------LENTELĖ PABAIGA------------------------------------------------------------->
+
+
+
+</div> <!--class="row"-->
+</div> <!--class="container"-->
+
+
+</body>
+</html>

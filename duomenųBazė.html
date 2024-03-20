@@ -1,0 +1,559 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+    <!-- Latest compiled and minified CSS -->
+<!--<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css"> -->
+<!-- jQuery library -->
+<!--<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>-->
+<!-- Latest compiled JavaScript -->
+<!--<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+<link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+<script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>-->
+
+    <style>
+     
+
+.pagination {
+  display: inline-block;
+  
+}
+
+
+.pagination a {
+  color: black;
+  float: left;
+  padding: 8px 16px;
+  text-decoration: none;
+ 
+  margin-right: 10px;
+  font-size: x-large;
+  background-color: #ddd;
+}
+
+#juostos-op{
+background-color: #FFFFFF;
+transition-duration: 0.4s;
+  cursor: pointer;
+  max-width: 600px;
+  border-radius: 100px;
+}
+#juostos-op:hover{
+  background-color: lightgrey;
+
+}
+
+
+.pagination a:hover {background-color: grey;}
+
+
+ul{
+  color: #000000;
+}
+
+li{
+  margin-right: 10px;
+  
+  font-weight: 700;
+  background-color: lightgray;
+}
+
+.button{
+transition-duration: 0.4s;
+  cursor: pointer;
+
+
+
+}
+.button1 {
+  background-color: #3cb631; 
+  color: black; 
+ 
+}
+
+.button1:hover {
+  background-color: #2e8e26;
+  color: white;
+}
+
+.button2 {
+  background-color: #db2121; 
+  color: white; 
+
+}
+
+.button2:hover {
+  background-color: #af1b1b;
+  color: white;
+}
+
+    #skyriukai{
+        
+        transition-duration: 0.4s;
+        cursor: pointer;
+        max-width: 200px;
+        max-height: 200px;
+        margin-top: 20px;
+        border-radius: 100px;
+        
+        
+    }
+     #skyriukai h3{
+
+        font-weight: 800;
+    }
+    #skyriukai:hover{
+      background-color: gray;
+      
+
+    }
+
+   
+    #juosta{
+        margin: 20px 20px 20px 20px;
+        text-align: center;
+
+    }
+    tr{
+        height: 80px;
+
+    }
+    
+    
+    
+    #juosta p{
+      
+        font-weight: 800;
+        font-size: xx-large;
+
+    }
+
+    .pilkap{
+        font-style: normal;
+
+    }
+
+    #div1{background-color: #1347AD;
+        text-align: center;
+         font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serifa; 
+         font-size: xx-large; 
+         height:100px;
+          width: 100%; 
+          padding: 20px;
+        margin-bottom: 10px;
+        }
+        #staciakamp{
+
+            border: 2px solid black; /* Border width, style, and color */
+            
+
+        }
+        #juostos-ap{
+            color:gray;
+            font-style: normal;
+            margin-top: 0;
+           
+
+        }
+
+        #div1 h1{
+            margin-top: 10px;
+
+        }
+        
+        #lentele{
+            
+            background-color: #366BD4;
+            margin-bottom: 10px;
+        text-align: center;
+        border-radius: 20px;
+        max-width: 1300px; /* Set maximum width for the div */
+      margin: 50px auto 0  ; /* Center the div horizontally */
+      border-radius: 20px;
+        }
+        #elementai{
+            background-color: #5B70DF; 
+            margin-top: 35px; 
+            height: 50px ;
+             text-align: center ; 
+             padding-top: 20px; 
+             border-radius: 20px;
+            
+
+        
+        }
+       img #elementai{
+        float: left ;
+        margin: auto;
+      
+
+       }
+    #div2{background-color: #366BD4;
+        padding: 30px;
+        margin-bottom: 10px;
+        text-align: center;
+        border-radius: 20px;
+        max-width: 600px; /* Set maximum width for the div */
+        max-height: 400px;
+      margin: 50px auto 0  ; /* Center the div horizontally */
+    }
+    #div21{background-color: #366BD4;
+        padding: 30px;
+        margin-bottom: 10px;
+        text-align: center;
+        max-width: 500px;
+        max-height: 200px ;
+        margin: 50px auto 0;
+        border-radius: 20px; 
+        /* Set maximum width for the div */
+       /* Center the div horizontally */
+    }
+    #son{background-color: #FFFFFF;
+      
+        padding: 40px;
+        padding-left: auto;
+        padding-right: auto;
+        margin-bottom: 10px;
+        text-align: center;
+        max-width: auto;
+        transition-duration: 0.4s;
+         cursor: pointer;
+       
+     }
+     #son:hover{
+      background-color: #afd0f6;
+      
+
+
+     }
+
+    #div3{background-color: #5B70DF;}
+    #div4{background-color: #97B4EC;}
+    #icon{float: left;}
+
+    #paskyra{
+             border: 2px solid black; /* Border width, style, and color */
+              border-radius: 40px ;
+              max-width: 135px;
+              padding: 10px;
+              margin-right: 10px;
+              transition-duration: 0.4s;
+              cursor: pointer;
+            }
+            #paskyra:hover{
+              background-color: lightgray;
+
+
+            }
+
+    #poskyriai{
+        border: 2px solid black; /* Border width, style, and color */
+        border-radius: 100px ;
+        margin: 20px 20px 20px 180px;
+        text-align: center;
+       
+
+    }
+    </style>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="Digital Clock.css">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+    
+
+    <title>Document</title>
+</head>
+<body>
+
+<div class= "container-fluid" >
+   <div style="background-color:#000000 ; " class="row"> 
+    <div  class="col-lg-12">
+      <!--<h1 class = "mb-4">Film List</h1>-->  
+        <h3 style="text-align: left; color: gray; font-weight: 600;"> Administratoriaus pagrindinis puslapis </h3>
+    </div>
+   </div>
+    <div  class="row"> 
+    <div id ="staciakamp"  class="col-lg-2"> <!--VIRŠUTINIS KAIRYSIS STAČIAKAMPIS PRADŽIA-->
+        
+        <img  src="{{.Ikona}}" style=" width: 300px; height: 300px" alt="Ikona"> 
+       
+       <div>
+        <img src="{{.Bruksniai}}" style=" width: 90px; height: 90px" alt="Bruksniai">
+    </div>
+    </div> <!--VIRŠUTINIS KAIRYSIS STAČIAKAMPIS PABAIGA-->
+
+     <div id="staciakamp"   class="col-lg-10" > <!--VIRŠUTINIS DEŠINYSIS STAČIAKAMPIS PRADŽIA-->
+          <!-- VIRŠUTINĖ ADMINISTRATORIAUS DUOMENŲ BAZĖS DALIS-->
+          <div class= "container-fluid">   
+            <div style="margin-top: 30px; " class="row">
+                <div class="col-lg-11" >
+                    <!-- PASKYROS DALIS-->
+                    <h3 style="text-align: right;margin-top: 20px; margin-right: 50px; font-size: xx-large; font-weight: 700; vertical-align: middle;"> Administratorius </h3>
+                </div>
+                <div class="col-lg-1" id="paskyra" >
+                    
+                        <img src="{{.Avatar}}" style=" width: 50px; height: 50px; float: right; margin-top: 5px; " alt="Avatar">
+
+                        <img src="{{.Bruksniai}}" style=" width: 40px; height: 40px; float: right; padding:2px;  margin-bottom:10px; margin-top:10px; margin-right:10px;" alt="Avatar">
+                     
+                </div>      
+                    
+
+                
+                <div style="margin-left: 750px; " id="skyriukai" class="col-lg-5" > <!--  Tekstas "Produktai"-->
+
+                    <h3 style="text-align: center;padding-top: 20px ; "> Produktai </h3>
+
+                    
+                </div>
+                <div id="skyriukai" style="margin-left: 100px  ; text-align: center;" class="col-lg-1" > <!--  Tekstas "Kodas"-->
+                    <h3 style=" padding-top: 20px ;"> Kodas </h3>
+
+                    
+                </div>
+                <div style="text-align: center; margin-left: 100px;  " id="skyriukai" class="col-lg-5" > <!--  Tekstas "Būsimi projektai"-->
+                    <h3> Būsimi projektai  </h3>
+
+                    
+                </div>
+
+
+            </div>
+
+            <div id="juosta"  class="row"> <!--JUOSTELĖ -->
+                <div class="col-lg-9">
+                    <div id="poskyriai"  class= "container-fluid"> 
+                        <div  class="row">
+                        <div style="margin-left: 50px;" id="juostos-op" class="col-lg-3"> <!--Produkto paieška | ieškoti produkto-->
+                            <p> Produkto paieška </p>           
+                            <p id="juostos-ap" style="font-weight: 600;"> ieškoti produkto </p>
+                        </div>
+                        <div id="juostos-op" class="col-lg-3"> <!--Produkto kodas | kodas-->
+                            <p> Produkto kodas </p>
+                            <p id="juostos-ap" style="font-weight: 600;" >  kodas</p>
+                        </div>
+                        <div id="juostos-op" class="col-lg-3"> <!--Parduotuvė | Pavadinimas-->
+                            <p> Parduotuvė </p>
+                            <p id="juostos-ap" style="font-weight: 600;"> Pavadinimas </p>
+                        </div>
+                            <div class="col-lg-2">
+                            <img  src="{{.Lupa}}" style=" width: 80px; height: 65px;  padding: 5px; margin: 30px 0px 20px 0px; float: right;" alt="Labas">
+                            </div>
+                        </div>
+                        </div> 
+                    </div>
+                </div> <!--JUOSTELĖ PABAIGA-->
+            </div>
+
+
+          </div>
+     </div> <!--VIRŠUTINIS DEŠINYSIS STAČIAKAMPIS Pabaiga-->
+
+     </div> <!--class= "row" -->
+    </div> <!--class= "container-fluid" -->
+
+
+   
+
+  
+    
+
+<!--------------------------------------------KONTEINERIO ATSKYRIMAS------------------------------------------------------------->
+
+
+<div class="container-fluid">
+    <div  class="row" style="height: 1100px;"> 
+
+        <div id="staciakamp" class="col-lg-2">
+        <!--<h1 class = "mb-4">Film List</h1>    -->  
+        <div id="son" style="margin-top: 40px; border-bottom: 2px solid gray; " >
+
+            <img src="{{.Prekes}}" style=" width: 60px; height: 60px; float: left; " alt="Avatar">
+            <img src="{{.Rodykle}}" style=" width: 60px; height: 60px; float: right;" alt="Avatar">
+          <h3> Prekės </h3>
+          
+        </div>
+          <div id="son" style=" border-bottom: 2px solid gray;  " style="margin-top: 20px;" >
+            <!--<h1 class = "mb-4">Film List</h1>    -->  
+            <img src="{{.Diagramos}}" style=" width: 60px; height: 60px; float: left;" alt="Avatar">
+              <h3> Diagramos </h3>
+            </div>
+
+
+
+
+
+
+        </div>
+
+     
+    
+
+
+
+
+    
+
+            <div id="staciakamp"  class="col-lg-10">
+
+
+
+                <table style="margin-top: 20px;" class="table  table-striped"  >
+                    <thead class="table-dark " >
+                      <tr >
+                        <th  style="font-size: xx-large;  font-weight: 900; vertical-align: middle; padding-left: 70px;"  colspan="4">Produktai
+                            <button class="button button1" style=" float: right; color: #FFFFFF; font-weight: 700; border-radius: 10px;" type="button" >Pridėti <img src="{{.Plius}}" style=" width: 70px; height: 70px; float: left; " alt="Avatar"></button>
+                          
+                        </th>
+                       
+                      </tr>
+                    </thead>
+                    <tbody>
+                        <tr style="font-size:x-large;">
+                            <th > <div class="form-check">
+                                <label class="form-check-label" for="check2">Pavadinimas</label>
+                              </div></th>
+                            <th>Kodas</th>
+                            <th>Parduotuve</th>
+                            <th></th>
+                          </tr>
+               
+                 
+                      {{range .Records}}
+                      <tr style="font-size:x-large;">
+                          <td>{{.Pavadinimas}}</td>
+                          <td>{{.Kodas}}</td>
+                          <td>{{.Parduotuve}}</td>
+                          <td>
+                            
+                              <form  action="/edit" method="post">
+                            <button name="id" value= "{{.ID}}" class="button button1" style="float: right; color: white; font-weight: 700; border-radius: 10px; padding-bottom: 9px; padding-top: 9px; vertical-align: middle; text-align: center;" type="submit">Redaguoti <img src="{{.Keisti}}" style="width: 55px; height: 55px; float: left;" alt="Avatar"></button>
+                            <input type="hidden" name="id" value= "{{.ID}}">
+                          </form>
+                          <form action="/delete" method="post">
+                            <button name="id" value= "{{.ID}}" class="button button2" style="float: right; color: white; font-weight: 700; padding: 11px; vertical-align: middle; text-align: center; margin-right: 20px; border-radius: 10px;" type="button" data-bs-toggle="modal" data-bs-target="#myModal">Ištrinti <img src="{{.Minus}}" style="width: 50px; height: 50px; float: left;" alt="Avatar"></button>
+                            <input type="hidden" name="id" value= "{{.ID}}">
+                          
+                  <!-- The Modal -->
+                  <div class="modal" id="myModal">
+                    <div class="modal-dialog modal-dialog-centered">
+                      <div class="modal-content">
+                  
+                        <!-- Modal Header -->
+                        <div class="modal-header">
+                          <h4 class="modal-title">Dėmesio!</h4>
+                          <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                        </div>
+                  
+                        <!-- Modal body -->
+                        <div class="modal-body">
+                          Ar jūs tikrai norite ištrinti šį failą?
+                        </div>
+                  
+                        <!-- Modal footer -->
+                        <div class="modal-footer">
+                          <button type="close" class="btn btn-danger" data-bs-dismiss="modal">Ištrinti</button>
+                          <button type="submit" class="btn" data-bs-dismiss="modal">Uždaryti</button>
+                        </div>
+                      </form>
+                      </div>
+                    </div>
+                  </div>
+
+                         
+                          </td>
+                              </tr>
+                      {{end}}
+             
+                        
+                    </tbody>
+                  </table>
+
+
+
+            <div class="container-fluid">
+                <div class="row">
+                <div class="col-lg-2"> 
+                  <p style="font-size: x-large;"> <b>Rodoma 5 iš ???</b> </p>
+
+                </div>
+                <div  class="col-lg-10"> 
+              <!--   <ul  class="pagination pagination-lg justify-content-end">
+                    <li class="page-item"><a class="page-link" href="#">1</a></li>
+                    <li class="page-item"><a class="page-link" href="#">2</a></li>
+                    <li class="page-item"><a class="page-link" href="#">3</a></li>
+                    <li class="page-item"><a class="page-link" href="#">Kitas</a></li>
+                  </ul>--> 
+                  <div style="float:right; " class="pagination">
+                  
+                    <a href="#">1</a>
+                    <a href="#">2</a>
+                    <a href="#">3</a>
+                    <a style="background-color: white;" href="#">Kitas</a>
+                  </div>
+                
+                </div>
+            </div>
+            <hr>
+            </div>
+            <!--<div id="elementai" > 
+                <img  src="{{.Rodykle}}" style="float: left; width: 35px; height: 35px">
+                <h3 style="text-align: center;"> Produktas 1 </h3>
+                <div id="elementai" > 
+                    <img  src="{{.Rodykle}}" style="float: left; width: 35px; height: 35px">
+                    <h3 style="text-align: center;"> Produktas 1 </h3>
+    
+                    
+               </div>
+               <div id="elementai" > 
+                <img  src="{{.Rodykle}}" style="float: left; width: 35px; height: 35px">
+                <h3 style="text-align: center;"> Produktas 1 </h3>
+
+                
+           </div>
+           <div id="elementai" > 
+            <img  src="{{.Rodykle}}" style="float: left; width: 35px; height: 35px">
+            <h3 style="text-align: center;" > Produktas 1 </h3>
+
+            
+       </div>
+       <div id="elementai" > 
+        <img  src="{{.Rodykle}}" style="float: left; width: 35x; height: 35px">
+        <h3 style="text-align: center;" > Produktas 1 </h3>
+
+        <div id="elementai" > 
+            <img  src="{{.Rodykle}}" style="float: left; width: 35px; height: 35px">
+            <h3 style="text-align: center;" > Produktas 1 </h3>
+
+            
+       </div>
+       <div id="elementai" > 
+        <img  src="{{.Rodykle}}" style="float: left; width: 35px; height: 35px">
+        <h3 style="text-align: center;" > Produktas 1 </h3>
+
+        
+   </div>
+   </div>
+                
+           </div>
+            
+        -->
+        <div  class= "container-fluid" >
+            <div style="background-color:#000000 ; " class="row"> 
+             <div  class="col-lg-12">
+               <!--<h1 class = "mb-4">Film List</h1>-->  
+                 <h3 style="vertical-align: bottom; text-align: center; background-color: #000000;  font-weight: 600; color: white;"> 2024 .. Visos teisės saugomos </h3>
+             </div>
+    </div>  
+</div> <!--class="row"-->
+</div> <!--class="container"-->
+
+
+
+
+
+</body>
+</html>
