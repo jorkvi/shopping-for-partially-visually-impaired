@@ -14,7 +14,14 @@
 
     <style>
      
-
+     .content {
+    font-size: 16px;
+    width: 200px;
+    height: 100px;
+    background-color: lightblue;
+    text-align: center;
+    line-height: 100px;
+  }
 .pagination {
   display: inline-block;
   
@@ -78,7 +85,10 @@ transition-duration: 0.4s;
 .button1 {
   background-color: #3cb631; 
   color: black; 
- 
+  padding: 15px;
+  font-size: 60px;
+  margin-right: 600px;
+  margin-top: 100px;
 }
 
 .button1:hover {
@@ -89,7 +99,10 @@ transition-duration: 0.4s;
 .button2 {
   background-color: #db2121; 
   color: white; 
-
+  padding: 20px;
+  font-size: 55px;
+  margin-top: 100px;
+  margin-left: 750px;
 }
 
 .button2:hover {
@@ -218,6 +231,13 @@ transition-duration: 0.4s;
         /* Set maximum width for the div */
        /* Center the div horizontally */
     }
+    #div23{
+      background-color: grey;
+      border-radius: 10px;
+
+
+
+    }
     #son{background-color: #FFFFFF;
       
         padding: 40px;
@@ -240,7 +260,10 @@ transition-duration: 0.4s;
     #div3{background-color: #5B70DF;}
     #div4{background-color: #97B4EC;}
     #icon{float: left;}
-
+    body {
+            transform: scale(1); /* Scale the body to 200% to counteract the initial 50% zoom */
+             /* Set the scaling origin to the top-left corner */
+        }
     #paskyra{
              border: 2px solid black; /* Border width, style, and color */
               border-radius: 40px ;
@@ -251,6 +274,18 @@ transition-duration: 0.4s;
               cursor: pointer;
             }
             #paskyra:hover{
+              background-color: lightgray;
+
+
+            }
+
+            #bruksniai{
+              border-radius: 20px ;
+              max-width: 95px;
+              transition-duration: 0.4s;
+              cursor: pointer;
+            }
+            #bruksniai:hover{
               background-color: lightgray;
 
 
@@ -279,30 +314,30 @@ transition-duration: 0.4s;
 
 <div class= "container-fluid" >
    <div style="background-color:#000000 ; " class="row"> 
-    <div  class="col-lg-12">
+    <div  class="col-md-12">
       <!--<h1 class = "mb-4">Film List</h1>-->  
         <h3 style="text-align: left; color: gray; font-weight: 600;"> Administratoriaus pagrindinis puslapis </h3>
     </div>
    </div>
     <div  class="row"> 
-    <div id ="staciakamp"  class="col-lg-2"> <!--VIRŠUTINIS KAIRYSIS STAČIAKAMPIS PRADŽIA-->
+    <div id ="staciakamp"  class="col-md-2"> <!--VIRŠUTINIS KAIRYSIS STAČIAKAMPIS PRADŽIA-->
         
-        <img  src="{{.Ikona}}" style=" width: 300px; height: 300px" alt="Ikona"> 
+        <img  src="{{.Ikona}}" style=" width: 450px; height: 450px" alt="Ikona"> 
        
-       <div>
+       <div id = bruksniai>
         <img src="{{.Bruksniai}}" style=" width: 90px; height: 90px" alt="Bruksniai">
     </div>
     </div> <!--VIRŠUTINIS KAIRYSIS STAČIAKAMPIS PABAIGA-->
 
-     <div id="staciakamp"   class="col-lg-10" > <!--VIRŠUTINIS DEŠINYSIS STAČIAKAMPIS PRADŽIA-->
+     <div id="staciakamp"   class="col-md-10" > <!--VIRŠUTINIS DEŠINYSIS STAČIAKAMPIS PRADŽIA-->
           <!-- VIRŠUTINĖ ADMINISTRATORIAUS DUOMENŲ BAZĖS DALIS-->
           <div class= "container-fluid">   
             <div style="margin-top: 30px; " class="row">
-                <div class="col-lg-11" >
+                <div class="col-md-11" >
                     <!-- PASKYROS DALIS-->
                     <h3 style="text-align: right;margin-top: 20px; margin-right: 50px; font-size: xx-large; font-weight: 700; vertical-align: middle;"> Administratorius </h3>
                 </div>
-                <div class="col-lg-1" id="paskyra" >
+                <div class="col-md-1" id="paskyra" onclick="window.location.href='http://localhost:8080/pagrindinis';" >
                     
                         <img src="{{.Avatar}}" style=" width: 50px; height: 50px; float: right; margin-top: 5px; " alt="Avatar">
 
@@ -312,18 +347,18 @@ transition-duration: 0.4s;
                     
 
                 
-                <div style="margin-left: 750px; " id="skyriukai" class="col-lg-5" > <!--  Tekstas "Produktai"-->
+                <div style="margin-left: 750px; " id="skyriukai" class="col-md-5" > <!--  Tekstas "Produktai"-->
 
                     <h3 style="text-align: center;padding-top: 20px ; "> Produktai </h3>
 
                     
                 </div>
-                <div id="skyriukai" style="margin-left: 100px  ; text-align: center;" class="col-lg-1" > <!--  Tekstas "Kodas"-->
+                <div id="skyriukai" style="margin-left: 100px  ; text-align: center;" class="col-md-1" > <!--  Tekstas "Kodas"-->
                     <h3 style=" padding-top: 20px ;"> Kodas </h3>
 
                     
                 </div>
-                <div style="text-align: center; margin-left: 100px;  " id="skyriukai" class="col-lg-5" > <!--  Tekstas "Būsimi projektai"-->
+                <div style="text-align: center; margin-left: 100px;  " id="skyriukai" class="col-md-5" > <!--  Tekstas "Būsimi projektai"-->
                     <h3> Būsimi projektai  </h3>
 
                     
@@ -333,22 +368,22 @@ transition-duration: 0.4s;
             </div>
 
             <div id="juosta"  class="row"> <!--JUOSTELĖ -->
-                <div class="col-lg-9">
+                <div class="col-md-9">
                     <div id="poskyriai"  class= "container-fluid"> 
                         <div  class="row">
-                        <div style="margin-left: 50px;" id="juostos-op" class="col-lg-3"> <!--Produkto paieška | ieškoti produkto-->
+                        <div style="margin-left: 50px;" id="juostos-op" class="col-md-3"> <!--Produkto paieška | ieškoti produkto-->
                             <p> Produkto paieška </p>           
                             <p id="juostos-ap" style="font-weight: 600;"> ieškoti produkto </p>
                         </div>
-                        <div id="juostos-op" class="col-lg-3"> <!--Produkto kodas | kodas-->
+                        <div id="juostos-op" class="col-md-3"> <!--Produkto kodas | kodas-->
                             <p> Produkto kodas </p>
                             <p id="juostos-ap" style="font-weight: 600;" >  kodas</p>
                         </div>
-                        <div id="juostos-op" class="col-lg-3"> <!--Parduotuvė | Pavadinimas-->
+                        <div id="juostos-op" class="col-md-3"> <!--Parduotuvė | Pavadinimas-->
                             <p> Parduotuvė </p>
                             <p id="juostos-ap" style="font-weight: 600;"> Pavadinimas </p>
                         </div>
-                            <div class="col-lg-2">
+                            <div class="col-md-2">
                             <img  src="{{.Lupa}}" style=" width: 80px; height: 65px;  padding: 5px; margin: 30px 0px 20px 0px; float: right;" alt="Labas">
                             </div>
                         </div>
@@ -376,15 +411,16 @@ transition-duration: 0.4s;
 <div class="container-fluid">
     <div  class="row" style="height: 1100px;"> 
 
-        <div id="staciakamp" class="col-lg-2">
+        <div id="staciakamp" class="col-md-2">
         <!--<h1 class = "mb-4">Film List</h1>    -->  
         <div id="son" style="margin-top: 40px; border-bottom: 2px solid gray; " >
-
-            <img src="{{.Prekes}}" style=" width: 60px; height: 60px; float: left; " alt="Avatar">
-            <img src="{{.Rodykle}}" style=" width: 60px; height: 60px; float: right;" alt="Avatar">
-          <h3> Prekės </h3>
-          
-        </div>
+          <a href="/pagrindinis" style="text-decoration: none; color: black;">
+              <img src="{{.Prekes}}" style="width: 60px; height: 60px; float: left;" alt="Avatar">
+              <img src="{{.Rodykle}}" style="width: 60px; height: 60px; float: right;" alt="Avatar">
+              <h3 style="cursor: pointer;"> Prekės </h3>
+          </a>
+      </div>
+      
           <div id="son" style=" border-bottom: 2px solid gray;  " style="margin-top: 20px;" >
             <!--<h1 class = "mb-4">Film List</h1>    -->  
             <img src="{{.Diagramos}}" style=" width: 60px; height: 60px; float: left;" alt="Avatar">
@@ -400,114 +436,124 @@ transition-duration: 0.4s;
 
          
 
-            <div id="staciakamp"  class="col-lg-10" >
+            <div id="staciakamp"  class="col-md-10" >
 
-
-                <div id="ivestis" class="container-fluid" style="background-color: gray;">
-                <div  class="row" >
-                <div class="container mt-3">
-                   
-                   
-                        <h3> Kodas </h3>
-                    <div class="input-group input-group-lg mb-3">
-                
-
-                      <!--  <td>{{.Pavadinimas}}</td>
-                        <td>{{.Kodas}}</td>
-                        <td>{{.Parduotuve}}</td>-->
-                        {{range .Records}}
-                      <input type="text" value="{{.Kodas}}" class="form-control">
-                    </div>
-                    </div>
-                    </div>
-                    </div>
-                    <div id="ivestis" class="container-fluid" style="background-color: gray;">
-                        <div  class="row" >
-                        <div class="container mt-3">
-                           
-                           
-                                <h3> Pavadinimas </h3>
-                            <div class="input-group input-group-lg mb-3">
-                        
-                              <input type="text"  value="{{.Pavadinimas}}" class="form-control">
-                            </div>
-                            </div>
-                            </div>
-                            </div>
-
-                            <div id="ivestis" class="container-fluid" style="background-color: gray;">
-                                <div  class="row" >
-                                <div class="container mt-3">
-                                   
-                                   
-                                        <h3> Parduotuve </h3>
-                                    <div class="input-group input-group-lg mb-3">
-                                
-                                      <input type="text" value="{{.Parduotuve}}" class="form-control">
-                                    </div>
-                                    {{end}} 
-                                    </div>
-                                    </div>
-                                    </div>
-
-
-
-
+              {{range .Records}}
+              <script>
+                function validateForm() {
+                    var bruksninisKodas = document.getElementsByName('produktas_bruksninis_kodas')[0].value;
+                    var kaina = document.getElementsByName('produktas_kaina')[0].value;
+            
+                    // Tikriname, ar bruksninis kodas yra sveikas skaičius
+                    if (!Number.isInteger(Number(bruksninisKodas))) {
+                        alert('Bruksninis kodas turi būti sveikas skaičius!');
+                        return false;
+                    }
+            
+                    // Tikriname, ar kaina yra teigiamas skaičius
+                    if (Number(kaina) <= 0 || isNaN(Number(kaina))) {
+                        alert('Kaina turi būti teigiamas skaičius!');
+                        return false;
+                    }
+            
+                    // Jei viskas gerai, leidžiame formą pateikti
+                    return true;
+                }
+            </script>
+<div id="staciakamp" class="col-lg-10">
+  <form action="/edit1" method="post" onsubmit="return validateForm()">
+      <!-- Įvestis į gamintoją -->
+      <div id="ivestis" class="container-fluid" style="background-color: gray;">
+          <div class="row">
+              <div class="container mt-3">
+                  <h3>Gamintojas</h3>
+                  <div class="input-group input-group-lg mb-3">
+                      <input type="text" placeholder="Pavadinimas" class="form-control" style="font-size: 30px;" name="gamintojas_pavadinimas" value="{{.Gamintojas_pav}}"  required>
+                      <input type="text" placeholder="Kilmės šalis" class="form-control" style="font-size: 30px;" name="gamintojas_kilmes_salis" value="{{.Gamintojas_salis}}" required>
                   </div>
+              </div>
+          </div>
+      </div>
+
+      <!-- Įvestis į parduotuvę -->
+      <div id="ivestis" class="container-fluid" style="background-color: gray;">
+          <div class="row">
+              <div class="container mt-3">
+                  <h3>Parduotuvė</h3>
+                  <div class="input-group input-group-lg mb-3">
+                      <input type="text" placeholder="Pavadinimas" class="form-control" style="font-size: 30px;" name="parduotuve_pavadinimas" value="{{.Parduotuve_pav}}" required>
+                      <input type="text" placeholder="Adresas" class="form-control" style="font-size: 30px;" name="parduotuve_adresas" value="{{.Parduotuve_adresas}}" required>
+                  </div>
+              </div>
+          </div>
+      </div>
+  
+      <!-- Įvestis į produktą -->
+      <div id="ivestis" class="container-fluid" style="background-color: gray;">
+          <div class="row">
+              <div class="container mt-3">
+                  <h3 style="font-size: 24px;">Produktas</h3>
+              
+                  <div class="input-group input-group-lg mb-3">
+                    <input type="number" placeholder="Bruksninis kodas" class="form-control" style="font-size: 30px;" name="produktas_bruksninis_kodas" value="{{.Kodas}}" required>
+                    <input type="text" placeholder="Pavadinimas" class="form-control" style="font-size: 30px;" name="produktas_pavadinimas" value="{{.Pavadinimas}}" required>
+                    <input type="number" step="0.01" placeholder="Kaina" class="form-control" style="font-size: 30px;" name="produktas_kaina" value="{{.Kaina}}" required>
+                    <input type="text" placeholder="Kategorija" class="form-control" style="font-size: 30px;" name="produktas_kategorija" value="{{.Kategorija}}" required>
+                  </div>
+                  <div class="input-group input-group-lg mb-3">
+                      <label for="pagaminimo_data" style="font-size: 30px;">Pagaminimo data</label>
+                      <input type="date" id="pagaminimo_data" class="form-control" style="font-size: 30px;" name="produktas_pagaminimo_data" value="{{.Pagaminimo_data}}"   required>
+                      <label for="galiojimo_pabaigos_data" style="font-size: 30px;">Galiojimo pabaigos data</label>
+                      <input type="date"  id="galiojimo_pabaigos_data" class="form-control" style="font-size: 30px;" name="produktas_galiojimo_pabaigos_data" value="{{.Galiojimo_pabaiga}}" required>
+                  </div>
+                  <div class="input-group input-group-lg mb-3">
+                      <input type="text" placeholder="Sudėtis" class="form-control" style="font-size: 30px;" name="produktas_sudetis" value="{{.Sudetis}}" required>
+                      <input type="text" placeholder="Maistingumas" class="form-control" style="font-size: 30px;" name="produktas_maistingumas" value="{{.Maistingumas}}" required>
+                  </div>
+              </div>
+          </div>
+      </div>
+      <br>
+      <button name="id" value= "{{.ID}}" type="submit" class="btn btn-primary" style="font-size: 50px;">
+          Išsaugoti
+      </button>
+  </form>
+</div>
+
+             <!--     <form method="post" action="/patvirtinti">
+                        <div id="div23" >
+
+                        <input type="text" id="kodas" name="kodas" value="{{.Kodas}}"><br>
+                        </div>
+                        <div id="div23">
+                        <label for="pavadinimas">Pavadinimas:</label>
+                        <input type="text" id="pavadinimas" name="pavadinimas" value="{{.Pavadinimas}}"><br>
+                       </div>
+                       <div id="div23">
+                        <label for="parduotuve">Parduotuvė:</label>
+                        <input type="text" id="parduotuve" name="parduotuve" value="{{.Parduotuve}}"><br>
+                       </div>
+                        <input type="submit" value="Patvirtinti">
+                    </form>
+                    -->  
+                    {{end}}
+                                
+    </div>
+</div>
+
+
+                  
 
 
            
-            <!--<div id="elementai" > 
-                <img  src="{{.Rodykle}}" style="float: left; width: 35px; height: 35px">
-                <h3 style="text-align: center;"> Produktas 1 </h3>
-                <div id="elementai" > 
-                    <img  src="{{.Rodykle}}" style="float: left; width: 35px; height: 35px">
-                    <h3 style="text-align: center;"> Produktas 1 </h3>
-    
-                    
-               </div>
-               <div id="elementai" > 
-                <img  src="{{.Rodykle}}" style="float: left; width: 35px; height: 35px">
-                <h3 style="text-align: center;"> Produktas 1 </h3>
-
-                
-           </div>
-           <div id="elementai" > 
-            <img  src="{{.Rodykle}}" style="float: left; width: 35px; height: 35px">
-            <h3 style="text-align: center;" > Produktas 1 </h3>
-
-            
-       </div>
-       <div id="elementai" > 
-        <img  src="{{.Rodykle}}" style="float: left; width: 35x; height: 35px">
-        <h3 style="text-align: center;" > Produktas 1 </h3>
-
-        <div id="elementai" > 
-            <img  src="{{.Rodykle}}" style="float: left; width: 35px; height: 35px">
-            <h3 style="text-align: center;" > Produktas 1 </h3>
-
-            
-       </div>
-       <div id="elementai" > 
-        <img  src="{{.Rodykle}}" style="float: left; width: 35px; height: 35px">
-        <h3 style="text-align: center;" > Produktas 1 </h3>
-
-        
-   </div>
-   </div>
-                
-           </div>
-            
-        -->
+           
         <div  class= "container-fluid" >
             <div style="background-color:#000000 ; " class="row"> 
-             <div  class="col-lg-12">
+             <div  class="col-md-12">
                <!--<h1 class = "mb-4">Film List</h1>-->  
                  <h3 style="vertical-align: bottom; text-align: center; background-color: #000000;  font-weight: 600; color: white;"> 2024 .. Visos teisės saugomos </h3>
-             </div>
-    </div>  
-</div> <!--class="row"-->
-</div> <!--class="container"-->
+ 
+
 
 
 

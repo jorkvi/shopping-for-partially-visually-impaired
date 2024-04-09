@@ -1,0 +1,611 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+    <!-- Latest compiled and minified CSS -->
+<!--<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css"> -->
+<!-- jQuery library -->
+<!--<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>-->
+<!-- Latest compiled JavaScript -->
+<!--<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+<link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+<script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>-->
+
+    <style>
+   
+     
+ #turinys{
+    height: 1128px;
+    width: 3070px ; /* This ensures the body takes at least the full height of the viewport */
+    background-image: linear-gradient(to right, #1dc1d4,  #f1db60 85%);
+    background-image: url({{.Efektas}});
+    opacity: 0.7;
+    position: relative;
+    background-size: cover; /* Adjusted property */
+   
+    /* Adjusted property */
+
+ }
+
+
+
+ #turinys2{
+    font-weight: 600;
+    font-size: large;
+
+ }
+ #turinys2 h2{
+    font-size: 50px;
+ }
+
+     .content {
+    font-size: 16px;
+    width:  1820px ;
+    height: calc(1000px * 2);
+    background-color: lightblue;
+    text-align: center;
+    line-height: 100px;
+  }
+
+ 
+
+.pagination {
+  display: inline-block;
+  
+}
+
+#ivestis{
+    border-radius: 40px;
+    background-color: grey;
+    padding: 20px;
+    
+    margin-top: 40px;
+
+}
+
+.pagination a {
+  color: black;
+  float: left;
+  padding: 8px 16px;
+  text-decoration: none;
+ 
+  margin-right: 10px;
+  font-size: x-large;
+  background-color: #ddd;
+}
+#pav{
+  color: #000;
+  font-size: 80px;
+}
+#juostos-op{
+background-color: #FFFFFF;
+transition-duration: 0.4s;
+  cursor: pointer;
+  max-width: 600px;
+  border-radius: 100px;
+}
+#juostos-op:hover{
+  background-color: lightgrey;
+
+}
+
+
+
+.pagination a:hover {background-color: grey;}
+
+#link ul{
+
+
+}
+ul{
+  color: #000000;
+}
+
+li{
+    padding: 10px;
+    margin-top: 10px;
+  margin-right: 10px;
+  font-size: 50px;
+  font-weight: 700;
+
+
+}
+
+.button{
+transition-duration: 0.4s;
+  cursor: pointer;
+
+  margin-left: 85px;
+  height: 60px;
+  width: 180px;
+
+}
+.button:hover{
+    background-color: #6f716f;
+    color: white;
+
+}
+
+.button1 {
+  
+  background-color:  #a4d18a ; 
+  color: black; 
+  padding: 5px;
+  font-size: 20px;
+  margin-right: 575px;
+  margin-top: 300px;
+  margin-bottom: 200px;
+}
+
+.button1:hover {
+  background-color: #82a66d;
+  color: white;
+}
+#button2{
+    background-color: #b1b6af; 
+  color: white; 
+  padding: 20px;
+  font-size: 55px;
+  margin-top: 100px;
+  margin-left: 750px;
+
+
+}
+#button2:hover{
+    background-color: #909290;
+  color: white;
+}
+.button2 {
+  background-color: #b1b6af; 
+  color: white; 
+  padding: 20px;
+  font-size: 55px;
+  margin-top: 100px;
+  margin-left: 750px;
+}
+
+.button2:hover {
+  background-color: #909290;
+  color: white;
+}
+
+    #skyriukai{
+        
+        transition-duration: 0.4s;
+        cursor: pointer;
+        max-width: 200px;
+        max-height: 200px;
+        margin-top: 20px;
+        border-radius: 100px;
+        
+        
+    }
+     #skyriukai h3{
+
+        font-weight: 800;
+    }
+    #skyriukai:hover{
+      background-color: gray;
+      
+
+    }
+
+   
+    #juosta{
+        margin: 20px 20px 20px 20px;
+        text-align: center;
+
+    }
+    tr{
+        height: 80px;
+
+    }
+    
+    
+    
+    #juosta p{
+      
+        font-weight: 800;
+        font-size: xx-large;
+
+    }
+
+    .pilkap{
+        font-style: normal;
+
+    }
+
+    #div1{background-color: #1347AD;
+        text-align: center;
+         font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serifa; 
+         font-size: xx-large; 
+         height:100px;
+          width: 100%; 
+          padding: 20px;
+        margin-bottom: 10px;
+        }
+        #staciakamp{
+
+            background-color: white; /* Border width, style, and color */
+            height:  150px;
+
+        }
+        #juostos-ap{
+            color:gray;
+            font-style: normal;
+            margin-top: 0;
+           
+
+        }
+
+        #div1 h1{
+            margin-top: 10px;
+
+        }
+        
+        #lentele{
+            
+            background-color: #366BD4;
+            margin-bottom: 10px;
+        text-align: center;
+        border-radius: 20px;
+        max-width: 1300px; /* Set maximum width for the div */
+      margin: 50px auto 0  ; /* Center the div horizontally */
+      border-radius: 20px;
+        }
+        #elementai{
+            background-color: #5B70DF; 
+            margin-top: 35px; 
+            height: 50px ;
+             text-align: center ; 
+             padding-top: 20px; 
+             border-radius: 20px;
+            
+
+        
+        }
+       img #elementai{
+        float: left ;
+        margin: auto;
+      
+
+       }
+    #div2{background-color: #366BD4;
+        padding: 30px;
+        margin-bottom: 10px;
+        text-align: center;
+        border-radius: 20px;
+        max-width: 600px; /* Set maximum width for the div */
+        max-height: 400px;
+      margin: 50px auto 0  ; /* Center the div horizontally */
+    }
+    #div21{background-color: #366BD4;
+        padding: 30px;
+        margin-bottom: 10px;
+        text-align: center;
+        max-width: 500px;
+        max-height: 200px ;
+        margin: 50px auto 0;
+        border-radius: 20px; 
+        /* Set maximum width for the div */
+       /* Center the div horizontally */
+    }
+    #div23{
+      background-color: grey;
+      border-radius: 10px;
+
+
+
+    }
+    #son{background-color: #FFFFFF;
+      
+        padding: 40px;
+        padding-left: auto;
+        padding-right: auto;
+        margin-bottom: 10px;
+        text-align: center;
+        max-width: auto;
+        transition-duration: 0.4s;
+         cursor: pointer;
+       
+     }
+     #son:hover{
+      background-color: #afd0f6;
+      
+
+
+     }
+     .navbar-nav .page {
+    height: 60px;
+    border-radius: 20px ;
+    padding: 20px;
+}
+     .navbar-nav .page3 {
+    background-color: blue !important;
+    border-radius: 20px ;
+    padding: 20px;
+}
+
+    #div3{background-color: #5B70DF;}
+    #div4{background-color: #97B4EC;}
+    #icon{float: left;}
+    body {
+            transform: scale(1); /* Scale the body to 200% to counteract the initial 50% zoom */
+             /* Set the scaling origin to the top-left corner */
+        }
+    #paskyra{
+             border: 2px solid black; /* Border width, style, and color */
+              border-radius: 40px ;
+              max-width: 135px;
+              padding: 10px;
+              margin-right: 10px;
+              transition-duration: 0.4s;
+              cursor: pointer;
+            }
+            #paskyra:hover{
+              background-color: lightgray;
+
+
+            }
+
+            #bruksniai{
+              border-radius: calc(20px * 2) ;
+              max-width: calc(95px * 2);
+              transition-duration: 0.4s;
+              cursor: pointer;
+            }
+            #bruksniai:hover{
+              background-color: lightgray;
+
+
+            }
+            body {
+        transform: scale(0.80);
+        transform-origin: top left;
+    }
+    #poskyriai{
+        border: calc(2px * 2) solid black; /* Border width, style, and color */
+        border-radius: calc(100px * 2) ;
+        margin: calc(20px * 2) calc(20px * 2) calc(20px * 2) calc(180px * 2);
+        text-align: center;
+       
+
+    }
+    
+    .navbar-nav.pull-right {
+    display: flex;
+    justify-content: flex-end;
+}
+    </style>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   
+  <link  href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css" rel="stylesheet">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+  
+
+    <title>Document</title>
+</head>
+<body>
+
+<div class= "container-fluid" >
+   <div style="background-color:#000000 ; width: 3055px; " class="row" > 
+    <div  class="col-md-12">
+      <!--<h1 class = "mb-4">Film List</h1>-->  
+        <h1 style="text-align: left; color: gray; font-weight: 600;"> Pagrindinis puslapis(Home page) </h1>
+    </div>
+   </div> 
+   
+   <div  style="background-color:#000000  ; height: 130px; width: 3055px; " class="row"> 
+    <div  class="col-md-12">
+   <nav class="navbar navbar-inverse" style="font-size: larger; height: 100px; width: 3000px; border-radius: 50px; ">
+    <div  class="container-fluid">
+        <div class="row">
+            <div  class="col-md-12">
+            
+      <ul  class="nav navbar-nav">
+        <li class="active" ><a class="page" href="#">Home</a></li>
+        <li class="active"><a class="page" onclick="programa(this)" href="#">Apie programą</a></li>
+        <li > <a class="page" onclick="kontaktai(this)" href="#">Kontaktai</a></li>
+        <li ><a class="page" onclick="darbuotojai(this)"  href="#">Projekto atstovai</a></li>
+        <li > <a class="page" style="visibility: hidden;" href="#">Kontaktai</a></li>
+        <li > <a class="page" style="visibility: hidden;" href="#">Kontaktai</a></li>
+        <li > <a class="page" style="visibility: hidden;" href="#">Kontaktai</a></li>
+        <li > <a class="page" style="visibility: hidden;" href="#">Kontaktai</a></li>
+        <li ><a href="#" class="page3 pull-right" onclick="window.location.href='/login'"  style="float: right;" >Prisijungti</a></li>
+        
+      </ul>
+    </div>
+        </div>
+    </div>
+  </nav>
+  </div>
+   </div> 
+
+       <!-- <div  class="row" style="background-color: white;"> 
+            <div id ="staciakamp"  class="col-lg-12"> -->
+                <!-- BALTAME BRŪKŠNE MYGTUKAI PRADŽIA--> 
+
+                <script>
+                    // Paimkite sąrašo elementą pagal ID
+// Get each li element by its ID
+
+
+// Add click event listeners to each li element
+
+                    function kontaktai(element) {
+
+                        var header = "<h2 style= \" font-weight: 700; color:black; font-size: 80px\"> Kontaktai: </h2>";
+                        var naujasTurinys = "<ul id=ul2 >" + 
+                                            "<li>Paštas: petras.petraitis@gmail.com</li>" +
+                                            "<li>Telefonas: +37057412489</li>" +
+                                            "<li>Adresas: ????????????????</li>" +
+                                            "</ul>";
+                        
+                                            var navLinks = document.querySelectorAll('.nav.navbar-nav li');
+    navLinks.forEach(function(link) {
+        if (!link.contains(element.parentElement) || link.textContent === "Home") {
+            link.classList.remove('active');
+        }
+        if (link.textContent === "Home") {
+            link.classList.add('active');
+        }
+    });
+
+    // Pridedame "active" klasę paspaustai nuorodai
+    element.parentElement.classList.add('active');
+
+                        document.getElementById("pav").innerHTML = header;
+                        document.getElementById("turinys2").innerHTML = naujasTurinys;
+                       // document.getElementById("link1").innerHTML = link1;
+                        //document.getElementById("link2").innerHTML = link2;
+                        //document.getElementById("link3").innerHTML = link3;
+                        var navLinks = document.querySelectorAll('.nav.navbar-nav li');
+    navLinks.forEach(function(link) {
+        if (!link.contains(element.parentElement) || link.textContent === "Home") {
+            link.classList.remove('active');
+        }
+        if (link.textContent === "Home") {
+            link.classList.add('active');
+        }
+    });
+
+    // Pridedame "active" klasę paspaustai nuorodai
+    element.parentElement.classList.add('active');
+                    }
+                    function darbuotojai(element) {
+                        var header = "<h2 style= \" font-weight: 700; color:black; font-size: 80px \"  > Prie šio darbo prisidėjo: </h2>";
+                        var naujasTurinys = "<ul id=ul2>" + 
+                                            "<li>Eimantas Rimkus</li>" +
+                                            "<li>Gina Mankute</li>" +
+                                            "<li>Guoda Dženkaityte</li>" +
+                                            "<li>Joris Kviesulaitis</li>" +
+                                            "<li>Martynas Jakovlevas</li>" +
+                                            "<li>Mykolas Žukaitis</li>" +
+                                            "</ul>";
+                       
+                        document.getElementById("pav").innerHTML = header;
+
+                        document.getElementById("turinys2").innerHTML = naujasTurinys;
+                       // document.getElementById("link1").innerHTML = link1;
+                      //  document.getElementById("link2").innerHTML = link2;
+                     //   document.getElementById("link3").innerHTML = link3;
+                     var navLinks = document.querySelectorAll('.nav.navbar-nav li');
+    navLinks.forEach(function(link) {
+        if (!link.contains(element.parentElement) || link.textContent === "Home") {
+            link.classList.remove('active');
+        }
+        if (link.textContent === "Home") {
+            link.classList.add('active');
+        }
+    });
+
+    // Pridedame "active" klasę paspaustai nuorodai
+    element.parentElement.classList.add('active');
+                     
+                    }
+
+                    function prisijungti() {
+                        window.location.href = '/';
+                        
+                    }
+
+
+                    function programa(element) {
+                        var navLinks = document.querySelectorAll('.nav.navbar-nav li');
+    navLinks.forEach(function(link) {
+        if (!link.contains(element.parentElement) || link.textContent === "Home") {
+            link.classList.remove('active');
+        }
+        if (link.textContent === "Home") {
+            link.classList.add('active');
+        }
+    });
+
+    // Pridedame "active" klasę paspaustai nuorodai
+    element.parentElement.classList.add('active');
+                        var header = "<h2 id=pav style= \" font-weight: 700; color:black;  \">Apie programėlę <h2>";
+                        var naujasTurinys = "<h2 id=turinys2 style = \" font-weight: 600;  color:black; \">skirtą naudotis silpnaregiams arba prastai matantiems senjorams, kurie turėdami mobilųjį telefoną, nuskenuotų prekės brūkšninį kodą ir savo telefono ekrane galėtų matyti visą informaciją padidintu šriftu.</h2>";
+                        var link1= "<li class=\"active\" id=\"link1\" ><a  onclick=\"programa()\" href=\"#\">Apie programą</a></li>";
+                        var link2= "<li id=\"link2\" ><a  onclick=\"kontaktai()\" href=\"#\">Kontaktai</a></li>";
+                        var link3= "<li id=\"link3\" ><a  onclick=\"darbuotojai()\" href=\"#\">Projekto atstovai</a></li>";
+                        document.getElementById("pav").innerHTML = header;
+                        document.getElementById("turinys2").innerHTML = naujasTurinys;
+                     //   document.getElementById("link1").innerHTML = link1;
+                     //   document.getElementById("link2").innerHTML = link2;
+                    //    document.getElementById("link3").innerHTML = link3;
+
+                        var link= "<ul id=\"link\" class=\"nav navbar-nav\">"+
+        "<li class=\"active\"><a href=\"#\">Home</a></li>"+
+        "<li  ><a  onclick=\"programa()\" href=\"#\">Apie programą</a></li>"+
+        "<li  > <a  onclick=\"kontaktai()\" href=\"#\">Kontaktai</a></li>"+
+       "<li class=\"active\" > <a  onclick=\"darbuotojai()\"  href=\"#\">Projekto atstovai</a></li>"+
+       "<li><a href=\"#\">Page 3</a></li>";
+                    }
+                    document.getElementById("link").innerHTML = link;
+
+                    </script>
+
+
+               <!-- <h6>Apie programėlę</h6>-->
+                <!--<div class="container" style="background-color: white;">-->
+                  <!--  <div class="row" style="padding: 50px 20px 50px 40px; ">-->
+                       <!-- <div class="col-lg-1">
+                        </div>-->
+                     <!--   <div class="col-lg-10">
+                
+               <button class="button" onclick="programa()" style=" background-color: grey; color: white; font-weight: 700; border-radius: 10px;   " type="submit" > Apie programą </button>
+               <button class="button" onclick="kontaktai()" style="  background-color: grey; color: white; font-weight: 700; border-radius: 10px;   " type="submit" > Kontaktai </button>
+               <button class="button" onclick="darbuotojai()"  style=" background-color: grey; color: white; font-weight: 700; border-radius: 10px;   " type="submit" > Projekto atstovai </button>
+                </div>
+               <div  class="col-lg-2"> 
+                <form  action="/">
+                    <button  class="button " style=" background-color: grey; float: left; color: white; font-weight: 700; border-radius: 10px;  " type="submit"  > Prisijungti </button>
+                
+                  </form>
+                </div>
+                    </div>
+                </div> -->
+               <!-- BALTAME BRŪKŠNE MYGTUKAI PABAIGA--> 
+            </div>
+        </div><!--class="row"-->  
+        <div  class="row" style="background-color: white;"> 
+            <div id ="turinys"  class="col-lg-12"> 
+                <div class="container-fluid" style="text-align: center;">
+                    <div class="row" style="text-align: center; " >
+                <h1 class="text-dark" id="pav" style="font-weight: 700; font-size: 80px; ">Apie programėlę</h1>
+            </div>
+            <div class="row"  >
+                <div class="col-lg-2"  ></div>
+               
+               <div  id="turinys2" class="col-lg-8" >
+                <!-- TURINIO TEKSTAS  PRADŽIA--> 
+                <h2 style=" font-weight: 600;  color:black; ">skirtą naudotis silpnaregiams arba prastai matantiems senjorams, kurie turėdami mobilųjį telefoną, nuskenuotų prekės brūkšninį kodą ir savo telefono ekrane galėtų matyti visą informaciją padidintu šriftu.</h2>
+                <!-- TURINIO TEKSTAS  PABAIGA--> 
+               </div>
+               <div class="col-lg-2"  ></div>
+            </div>
+            
+                </div>
+            </div>
+        </div><!--class="row"-->  
+           
+        
+            <div style="background-color:#000000 ; vertical-align:text-bottom; width: 3070px;" class="row" > 
+             <div style="vertical-align: bottom; "  class="col-md-12" >
+               <!--<h1 class = "mb-4">Film List</h1>-->  
+                 <h1 style=" vertical-align: bottom; text-align: center; background-color: #000000;  font-weight: 600; color: white; "> 2024 .. Visos teisės saugomos </h1>
+             </div>
+    </div>  
+
+
+</div>
+
+
+
+
+</body>
+</html>
