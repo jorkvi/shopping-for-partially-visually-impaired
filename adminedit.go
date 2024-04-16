@@ -72,7 +72,7 @@ func handlerFunc(w http.ResponseWriter, r *http.Request) {
 		Kazkas:      session.Values["userid"].(int),
 		Elpastas:    session.Values["elpastas"].(string),
 		Slaptazodis: session.Values["slaptazodis"].(string),
-		Druska:      session.Values["druska"].(string),
+		Druska:      session.Values["Druska"].(string),
 		Vardas:      session.Values["vardas"].(string),
 	}
 
@@ -108,11 +108,17 @@ func admindata(w http.ResponseWriter, r *http.Request) {
 
 	r.ParseForm()
 	id := r.FormValue("id")
-	druska := r.FormValue("Druska")
 	elpastas := r.FormValue("elpastas")
 	vardas := r.FormValue("vardas")
 	password = r.FormValue("password")
-	hashedPassword := hashPassword(password, druska)
+
+	// Atlikite užklausą
+	var druska1 string
+	err = db.QueryRow("SELECT druska FROM paskyra WHERE id = ?", id).Scan(&druska1)
+	if err != nil {
+		panic(err.Error()) // apdorokite klaidas pagal savo programos logiką
+	}
+	hashedPassword := hashPassword(password, druska1)
 	naudotojasQuery := `
 		UPDATE paskyra 
 		SET  

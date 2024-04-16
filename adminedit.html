@@ -464,7 +464,7 @@ transition-duration: 0.4s;
     <form action="/adminEdit" method="post" onsubmit="return validateForm()">
         <h2>Administratoriaus duomenų redagavimas</h2>
         <input type="hidden" name="id" value="{{.Kazkas}}">
-        <input type="hidden" name="druska" value="{{.Druska}}">
+        <input type="hidden" name="Druska" value="{{.Druska}}">
         <!-- Elektroninis paštas -->
         <label for="elpastas">Elektroninis paštas:</label>
         <input type="email" id="elpastas" name="elpastas" value="{{.Elpastas}}" required ><br>

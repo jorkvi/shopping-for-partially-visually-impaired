@@ -228,7 +228,7 @@ func Login(w http.ResponseWriter, r *http.Request) {
 	session.Values["userid"] = user.id
 	session.Values["elpastas"] = user.elpastas
 	session.Values["slaptazodis"] = password
-	session.Values["druska"] = user.druska
+	session.Values["Druska"] = user.druska
 	session.Values["vardas"] = user.pilnas_vardas
 
 	err = session.Save(r, w)
