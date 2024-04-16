@@ -26,32 +26,65 @@ type PageData struct {
 	Minus        string
 	Plius        string
 	Keisti       string
+	UserData     *User
 }
 
 func main() {
 	http.HandleFunc("/homePage", homeHandler)
 	http.HandleFunc("/login", HomePage)
 	http.HandleFunc("/logine", Login)
-	//http.HandleFunc("/dashboard", Dashboard)
 	http.HandleFunc("/logo.png", func(w http.ResponseWriter, r *http.Request) {
 		http.ServeFile(w, r, "logo.png")
 	})
 
 	http.Handle("/gallery/", http.StripPrefix("/gallery/", http.FileServer(http.Dir("gallery"))))
-	http.HandleFunc("/pagrindinis", h1)
 
-	http.HandleFunc("/delete", deleteHandler)
+	// Nustatome middleware, kuris tikrins, ar vartotojas yra prisijungęs prie kiekvieno užklausos
 
-	http.HandleFunc("/edit", editHandler)
-	http.HandleFunc("/edit1", updateHandler)
-	http.HandleFunc("/insert", h2)
-	http.HandleFunc("/insert1", insertHandler)
-	http.HandleFunc("/search", searchHandler)
+	http.HandleFunc("/", func(w http.ResponseWriter, r *http.Request) {
+
+		session, err := store.Get(r, "session-name")
+		if !session.Values["LoggedIn"].(bool) {
+			//fmt.Println(session.LoggedIn)
+
+			// Jei vartotojas nėra prisijungęs, jį peradresuojame į prisijungimo puslapį
+			http.Redirect(w, r, "/homePage", http.StatusSeeOther)
+			return
+		}
+
+		// Jei vartotojas yra prisijungęs, leidžiame prieinamumą pagal reikalavimus
+		switch r.URL.Path {
+		case "/pagrindinis":
+			h1(w, r)
+		case "/delete":
+			deleteHandler(w, r)
+		case "/edit":
+			editHandler(w, r)
+		case "/edit1":
+			updateHandler(w, r)
+		case "/insert":
+			h2(w, r)
+		case "/insert1":
+			insertHandler(w, r)
+		case "/search":
+			searchHandler(w, r)
+		case "/admin":
+			handlerFunc(w, r)
+		case "/adminEdit":
+			admindata(w, r)
+		default:
+			// Jei vartotojas nukreiptas į kitą URL, tai peradresuojame į pagrindinį puslapį
+			http.Redirect(w, r, "/homePage", http.StatusSeeOther)
+		}
+		if err != nil {
+			http.Error(w, err.Error(), http.StatusInternalServerError)
+			return
+		}
+	})
 
 	fmt.Println("Serveris veikia adresu: http://localhost:8080")
 	http.ListenAndServe(":8080", nil)
 	fmt.Println("hello world")
-	//	http.Handle("/gallery/", http.StripPrefix("/gallery", http.FileServer(http.Dir("./gallery"))))
 
 	log.Fatal(http.ListenAndServe(":8000", nil))
 

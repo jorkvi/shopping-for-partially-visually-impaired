@@ -10,7 +10,12 @@ import (
 	"net/http"
 
 	_ "github.com/go-sql-driver/mysql"
+	"github.com/gorilla/sessions"
 )
+
+var store = sessions.NewCookieStore([]byte("asdfghjk"))
+
+var session *sessions.Session
 
 type PageVariables struct {
 	Title        string
@@ -42,6 +47,7 @@ type User struct {
 }*/
 
 func HomePage(w http.ResponseWriter, r *http.Request) {
+
 	pageVariables := PageVariables{
 		Title: "Prisijungimas",
 	}
@@ -208,6 +214,26 @@ func Login(w http.ResponseWriter, r *http.Request) {
 
 	if hashedPassword != user.slaptazodis {
 		renderLoginPage(w, PageVariables{Title: "Prisijungimas", ErrorMessage: "Neteisingas el. paštas arba slaptažodis."})
+		return
+	}
+	// Gauti esamą sesiją
+	session, err := store.Get(r, "session-name")
+	if err != nil {
+		http.Error(w, err.Error(), http.StatusInternalServerError)
+		return
+	}
+
+	// Nustatyti prisijungimo būseną sesijoje
+	session.Values["LoggedIn"] = true
+	session.Values["userid"] = user.id
+	session.Values["elpastas"] = user.elpastas
+	session.Values["slaptazodis"] = password
+	session.Values["druska"] = user.druska
+	session.Values["vardas"] = user.pilnas_vardas
+
+	err = session.Save(r, w)
+	if err != nil {
+		http.Error(w, err.Error(), http.StatusInternalServerError)
 		return
 	}
 
