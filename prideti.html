@@ -310,7 +310,7 @@ transition-duration: 0.4s;
                     <!-- PASKYROS DALIS-->
                     <h3 style="text-align: right;margin-top: 20px; margin-right: 50px; font-size: xx-large; font-weight: 700; vertical-align: middle;"> Administratorius </h3>
                 </div>
-                <div class="col-lg-1" id="paskyra" >
+                <div class="col-lg-1" id="paskyra" onclick="window.location.href='http://localhost:8080/admin';"  >
                     
                         <img src="{{.Avatar}}" style=" width: 50px; height: 50px; float: right; margin-top: 5px; " alt="Avatar">
 
@@ -431,7 +431,54 @@ transition-duration: 0.4s;
                 return true;
             }
         </script>
-   <div id="staciakamp" class="col-lg-10">
+        <!-- BRUKSNINIO KODO PATIKRINIMAS CIA PRAASIDEDA -->
+        <script>
+            function checkProduct() {
+                var barCode = document.getElementsByName("barCode")[0].value;
+                var xhttp = new XMLHttpRequest();
+                xhttp.open("POST", "/tikrinti", true);
+                xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+                xhttp.send("barCode=" + barCode);
+                xhttp.onreadystatechange = function() {
+                    if (this.readyState == 4 && this.status == 200) {
+                        var data = JSON.parse(this.responseText);
+                        document.getElementsByName("gamintojas_pavadinimas")[0].value = Produktas.Gamintojas_pav;
+                        document.getElementsByName("gamintojas_kilmes_salis")[0].value = Produktas.Gamintojas_salis;
+                        document.getElementsByName("parduotuve_pavadinimas")[0].value = Produktas.Parduotuve_pav;
+                        document.getElementsByName("parduotuve_adresas")[0].value = Produktas.Parduotuve_adresas;
+    
+                        document.getElementsByName("produktas_bruksninis_kodas")[0].value = daProduktasta.Kodas;
+                        document.getElementsByName("produktas_kaina")[0].value = Produktas.Kaina;
+                        document.getElementsByName("produktas_kategorija")[0].value = Produktas.Kategorija;
+                        document.getElementsByName("produktas_pagaminimo_data")[0].value = Produktas.Pagaminimo_data;
+                        document.getElementsByName("produktas_galiojimo_pabaigos_data")[0].value = Produktas.Galiojimo_pabaiga;
+                        document.getElementsByName("produktas_sudetis")[0].value = Produktas.Sudetis;
+                        document.getElementsByName("produktas_maistingumas")[0].value = Produktas.Maistingumas;
+                    }
+                };
+    
+                return false;
+            }
+        </script>
+
+<div id="staciakamp" class="col-lg-10">
+    <div id="ivestis" class="container-fluid" style="background-color: gray;">
+        <div class="row">
+            <div class="container mt-3">
+                <h3>Patikrinimas ar produktas nėra įvestas</h3>
+                
+                <div class="input-group input-group-lg mb-3">
+                    <input type="text" placeholder="Brūkšninis kodas" class="form-control" style="font-size: 30px;" name="barCode">
+                    <input type="button" value="Tikrinti" onclick="checkProduct()">
+
+                 
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- BRUKSNINIO KODO BAIGESI CIA -->
+
+    
     <form action="/insert1" method="post" onsubmit="return validateForm()">
     <!-- Įvestis į gamintoją -->
     <div id="ivestis" class="container-fluid" style="background-color: gray;">

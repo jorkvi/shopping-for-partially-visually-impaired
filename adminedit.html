@@ -356,7 +356,7 @@ transition-duration: 0.4s;
                     <!-- PASKYROS DALIS-->
                     <h3 style="text-align: right;margin-top: 20px; margin-right: 50px; font-size: xx-large; font-weight: 700; vertical-align: middle;"> Administratorius </h3>
                 </div>
-                <div class="col-lg-1" id="paskyra" >
+                <div class="col-lg-1" id="paskyra" onclick="window.location.href='http://localhost:8080/admin';"  >
                     
                         <img src="{{.Avatar}}" style=" width: 50px; height: 50px; float: right; margin-top: 5px; " alt="Avatar">
 
@@ -459,7 +459,7 @@ transition-duration: 0.4s;
         
    <div id="staciakamp" class="col-lg-10">
     
-    <!-- ADMIN DATA -->
+    <!-- ADMIN DATA NUO CIA PRASIDEDA -->
     
     <form action="/adminEdit" method="post" onsubmit="return validateForm()">
         <h2>Administratoriaus duomenų redagavimas</h2>
@@ -480,7 +480,7 @@ transition-duration: 0.4s;
         <!-- Išsaugoti mygtukas -->
         <input type="submit" value="Išsaugoti">
     </form>
-    
+    <!-- ADMIN DATA CIA BAIGESI -->
     
     <br>
                

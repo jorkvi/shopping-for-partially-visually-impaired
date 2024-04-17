@@ -135,7 +135,7 @@ func editHandler(w http.ResponseWriter, r *http.Request) {
 		Keisti:       "gallery/keisti.png",
 	}
 
-	tmpl := template.Must(template.ParseFiles("redagavimas.html"))
+	tmpl := template.Must(template.ParseFiles("prideti.html"))
 
 	if err := tmpl.Execute(w, struct {
 		PageData
@@ -688,4 +688,110 @@ func updateHandler(w http.ResponseWriter, r *http.Request) {
 	}
 
 	http.Redirect(w, r, "/pagrindinis", http.StatusSeeOther)
+}
+
+// BAR CODE SEARCH IN INSERT
+func barCodeHandler(w http.ResponseWriter, r *http.Request) {
+	username := "admin"
+	password := "admin"
+	host := "127.0.0.1"
+	port := "3306"
+	dbName := "pvp_naudotojams"
+
+	// Sukurkite duomenų šaltinio vardą (DSN) eilutę
+	dsn := fmt.Sprintf("%s:%s@tcp(%s:%s)/%s", username, password, host, port, dbName)
+
+	// Atidarome ryšį su MySQL duomenų baze
+	db, err := sql.Open("mysql", dsn)
+	if err != nil {
+		log.Fatalf("Klaida atidarant duomenų bazės ryšį: %v", err)
+	}
+	defer db.Close()
+
+	// Patikriname duomenų bazės ryšį
+	err = db.Ping()
+	if err != nil {
+		log.Fatalf("Klaida jungiantis prie duomenų bazės: %v", err)
+	}
+
+	// Gauname įvestas reikšmes iš formos
+	barCode := r.FormValue("barCode")
+	//produkto_pavadinimas := r.FormValue("barCode")
+	//produkto_kodas := r.FormValue("produkto_kodas")
+	//parduotuves_pavadinimas := r.FormValue("parduotuves_pavadinimas")
+
+	// SQL užklausa, skirta rasti produktus, kurių pavadinimas prasideda su įvestu tekstu
+	/*productQuery := `
+	  SELECT *
+	  FROM produktas
+	  WHERE pavadinimas LIKE ? AND bruksninis_kodas LIKE ?`*/
+
+	productQuery := `
+    	SELECT produktas.*, parduotuve.*, gamintojas.*
+		FROM produktas 
+		JOIN parduotuve ON produktas.fk_parduotuve_id = parduotuve.id
+		JOIN gamintojas ON produktas.fk_gamintojas_id =  gamintojas.id
+		WHERE produktas.bruksninis_kodas = ?
+		`
+
+	//record
+	// SQL užklausos rezultatai produktams
+	productRows, err := db.Query(productQuery, barCode)
+	if err != nil {
+		log.Fatalf("Klaida vykdant užklausą: %v", err)
+	}
+	defer productRows.Close()
+
+	// Čia apdoroti produktų rezultatus
+	var records []Produktas
+	for productRows.Next() {
+		var record Produktas
+		record.Minus = "gallery/circle-minus-1.png"
+		record.Plius = "gallery/Circled_plus.png"
+		record.Keisti = "gallery/keisti.png"
+		record.Minus = "gallery/circle-minus-1.png"
+		record.Plius = "gallery/Circled_plus.png"
+		record.Keisti = "gallery/keisti.png"
+		if err := productRows.Scan(&record.ID, &record.Kodas, &record.Pavadinimas, &record.Kaina, &record.Kategorija, &record.Sudetis, &record.Maistingumas, &record.Pagaminimo_data, &record.Galiojimo_pabaiga,
+			&record.Parduotuve, &record.Gamintosjas, &record.Parduotuve_ID, &record.Parduotuve_pav, &record.Parduotuve_adresas, &record.Gamintojas_ID, &record.Gamintojas_pav, &record.Gamintojas_salis); err != nil {
+			http.Error(w, err.Error(), http.StatusInternalServerError)
+			return
+		}
+
+		records = append(records, record)
+	}
+	if err := productRows.Err(); err != nil {
+		log.Fatalf("Klaida nuskaitant produktų rezultatus: %v", err)
+		return
+	}
+	data := PageData{
+		Title:        "Example Page",
+		ImageURL:     "gallery/25694.png", // URL to your image
+		Avatar:       "gallery/3837171.png",
+		Parduotuve:   "gallery/1413908.png",
+		Atsiliepimai: "gallery/787610-200.png",
+		Nustatymai:   "gallery/setting.png",
+		Ataskaita:    "gallery/1268.png",
+		Apie:         "gallery/question.png",
+		Lupa:         "gallery/lupa.png",
+		Rodykle:      "gallery/rodykle1.png",
+		Ikona:        "gallery/ikona.png",
+		Bruksniai:    "gallery/bruksniai.png",
+		Diagramos:    "gallery/diagramos.bmp",
+		Prekes:       "gallery/prekes.png",
+		Plius:        "gallery/Circled_plus.png",
+		Minus:        "gallery/circle-minus-1.png",
+		Keisti:       "gallery/keisti.png",
+	}
+	http.Redirect(w, r, "/pagrindinis", http.StatusSeeOther)
+	//tmpl := template.Must(template.ParseFiles("index.html"))
+	tmpl := template.Must(template.ParseFiles("prideti.html"))
+
+	if err := tmpl.Execute(w, struct {
+		PageData
+		Records []Produktas
+	}{data, records}); err != nil {
+		http.Error(w, err.Error(), http.StatusInternalServerError)
+		return
+	}
 }
