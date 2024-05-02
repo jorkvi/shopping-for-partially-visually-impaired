@@ -6,6 +6,7 @@ import (
 	"html/template"
 	"log"
 	"net/http"
+	"net/url"
 
 	_ "github.com/go-sql-driver/mysql"
 )
@@ -33,6 +34,8 @@ type Produktas struct {
 	Gamintojas_salis   string
 }
 
+//pvp-db.mysql.database.azure.com 3306
+
 type Film struct {
 	Title    string
 	Director string
@@ -41,8 +44,8 @@ type Film struct {
 
 // EDIT BUTTON SQL CODE AND ALL FUNCTIONS
 func editHandler(w http.ResponseWriter, r *http.Request) {
-	username := "root"
-	password := ""
+	username := "admin"
+	password := "admin"
 	host := "127.0.0.1"
 	port := "3306"
 	dbName := "pvp_naudotojams"
@@ -144,12 +147,13 @@ func editHandler(w http.ResponseWriter, r *http.Request) {
 		http.Error(w, err.Error(), http.StatusInternalServerError)
 		return
 	}
+
 }
 
 // DELETE BUTTON CODE
 func deleteHandler(w http.ResponseWriter, r *http.Request) {
-	username := "root"
-	password := ""
+	username := "admin"
+	password := "admin"
 	host := "127.0.0.1"
 	port := "3306"
 	dbName := "pvp_naudotojams"
@@ -195,8 +199,8 @@ func deleteHandler(w http.ResponseWriter, r *http.Request) {
 
 // AFTER LOGIN PAGE CODE "/pagrininis"
 func h1(w http.ResponseWriter, r *http.Request) {
-	username := "root"
-	password := ""
+	username := "admin"
+	password := "admin"
 	host := "127.0.0.1"
 	port := "3306"
 	dbName := "pvp_naudotojams"
@@ -347,10 +351,10 @@ func h2(w http.ResponseWriter, r *http.Request) {
 	}
 }
 
-// INSER CODE
+// INSER CODE SITA NUSIKOPINTI IR PERKELTI REIKES KAI !!!!!!
 func insertHandler(w http.ResponseWriter, r *http.Request) {
-	username := "root"
-	password := ""
+	username := "admin"
+	password := "admin"
 	host := "127.0.0.1"
 	port := "3306"
 	dbName := "pvp_naudotojams"
@@ -393,77 +397,101 @@ func insertHandler(w http.ResponseWriter, r *http.Request) {
 	produktoPagaminimoData := r.FormValue("produktas_pagaminimo_data")
 	produktoGaliojimoPabaigosData := r.FormValue("produktas_galiojimo_pabaigos_data")
 
-	// Čia įrašykite savo SQL įterpimo užklausas
-	query := `
-			   INSERT INTO gamintojas (pavadinimas, kilmes_salis)
-			   VALUES (?, ?)
-		   `
-	_, err = db.Exec(query, gamintojasPavadinimas, gamintojasKilmesSalis)
+	// Patikriname, ar brūkšninis kodas jau egzistuoja
+	queryCheck := `
+    SELECT COUNT(*)
+    FROM produktas
+    WHERE bruksninis_kodas = ?
+    `
+
+	var count int
+	err = db.QueryRow(queryCheck, produktoBruksninisKodas).Scan(&count)
 	if err != nil {
 		http.Error(w, err.Error(), http.StatusInternalServerError)
 		return
 	}
-	query1 := `
-  				 SELECT id 
-   				FROM gamintojas 
-   				WHERE pavadinimas = ? AND kilmes_salis = ?`
-	row1 := db.QueryRow(query1, gamintojasPavadinimas, gamintojasKilmesSalis)
-	var id_gamintojas int
-	err = row1.Scan(&id_gamintojas)
-	if err != nil {
-		if err == sql.ErrNoRows {
-			// Handle case where no rows were returned
-		} else {
-			// Handle other errors
+
+	if count > 0 {
+		//w.WriteHeader(http.StatusBadRequest)
+		//fmt.Fprintf(w, "<h1>Toks brūkšninis kodas jau egzistuoja!</h1>")
+		errorMessage := "Toks brūkšninis kodas jau egzistoje!"
+		redirectURL := fmt.Sprintf("/insert?error=%s", url.QueryEscape(errorMessage))
+		http.Redirect(w, r, redirectURL, http.StatusFound)
+		return
+	} else {
+
+		query := `
+               INSERT INTO gamintojas (pavadinimas, kilmes_salis)
+               VALUES (?, ?)
+           `
+		_, err = db.Exec(query, gamintojasPavadinimas, gamintojasKilmesSalis)
+		if err != nil {
 			http.Error(w, err.Error(), http.StatusInternalServerError)
 			return
 		}
-	}
-	query = `
-				INSERT INTO parduotuve (pavadinimas, adresas)
-				VALUES (?, ?)
-			`
-	_, err = db.Exec(query, parduotuvePavadinimas, parduotuveAdresas)
-	if err != nil {
-		http.Error(w, err.Error(), http.StatusInternalServerError)
-		return
-	}
-
-	query2 := `
-  				 SELECT id 
-   				FROM parduotuve 
-   				WHERE pavadinimas = ? AND adresas = ?`
-	row2 := db.QueryRow(query2, parduotuvePavadinimas, parduotuveAdresas)
-	var id_padruotuve int
-	err = row2.Scan(&id_padruotuve)
-	if err != nil {
-		if err == sql.ErrNoRows {
-			// Handle case where no rows were returned
-		} else {
-			// Handle other errors
+		query1 := `
+                 SELECT id 
+                FROM gamintojas 
+                WHERE pavadinimas = ? AND kilmes_salis = ?`
+		row1 := db.QueryRow(query1, gamintojasPavadinimas, gamintojasKilmesSalis)
+		var id_gamintojas int
+		err = row1.Scan(&id_gamintojas)
+		if err != nil {
+			if err == sql.ErrNoRows {
+				// Handle case where no rows were returned
+			} else {
+				// Handle other errors
+				http.Error(w, err.Error(), http.StatusInternalServerError)
+				return
+			}
+		}
+		query = `
+                INSERT INTO parduotuve (pavadinimas, adresas)
+                VALUES (?, ?)
+            `
+		_, err = db.Exec(query, parduotuvePavadinimas, parduotuveAdresas)
+		if err != nil {
 			http.Error(w, err.Error(), http.StatusInternalServerError)
 			return
 		}
-	}
 
-	// Čia įrašykite kodą, kuris įterpia duomenis į produktą
-	query = `
-				INSERT INTO produktas (bruksninis_kodas, pavadinimas, kaina, kategorija, sudetis, maistingumas, pagaminimo_data, galiojimo_pabaigos_data, fk_parduotuve_id, fk_gamintojas_id)
-				VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
-			`
-	_, err = db.Exec(query, produktoBruksninisKodas, produktoPavadinimas, produktoKaina, produktoKategorija, produktoSudetis, produktoMaistingumas, produktoPagaminimoData, produktoGaliojimoPabaigosData, id_padruotuve, id_gamintojas) // 1 yra įstatyta reikšmė fk_parduotuve_id ir fk_gamintojas_id, pakeiskite ją pagal savo poreikius
-	if err != nil {
-		http.Error(w, err.Error(), http.StatusInternalServerError)
-		return
-	}
-	http.Redirect(w, r, "/insert", http.StatusSeeOther)
+		query2 := `
+                 SELECT id 
+                FROM parduotuve 
+                WHERE pavadinimas = ? AND adresas = ?`
+		row2 := db.QueryRow(query2, parduotuvePavadinimas, parduotuveAdresas)
+		var id_padruotuve int
+		err = row2.Scan(&id_padruotuve)
+		if err != nil {
+			if err == sql.ErrNoRows {
+				// Handle case where no rows were returned
+			} else {
+				// Handle other errors
+				http.Error(w, err.Error(), http.StatusInternalServerError)
+				return
+			}
+		}
 
+		// Čia įrašykite kodą, kuris įterpia duomenis į produktą
+		query = `
+                INSERT INTO produktas (bruksninis_kodas, pavadinimas, kaina, kategorija, sudetis, maistingumas, pagaminimo_data, galiojimo_pabaigos_data, fk_parduotuve_id, fk_gamintojas_id)
+                VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
+            `
+		_, err = db.Exec(query, produktoBruksninisKodas, produktoPavadinimas, produktoKaina, produktoKategorija, produktoSudetis, produktoMaistingumas, produktoPagaminimoData, produktoGaliojimoPabaigosData, id_padruotuve, id_gamintojas) // 1 yra įstatyta reikšmė fk_parduotuve_id ir fk_gamintojas_id, pakeiskite ją pagal savo poreikius
+		if err != nil {
+			http.Error(w, err.Error(), http.StatusInternalServerError)
+			return
+		}
+		successMessage := "Sėkmingai įterptas produktas!"
+		redirectURL := fmt.Sprintf("/insert?success=%s", url.QueryEscape(successMessage))
+		http.Redirect(w, r, redirectURL, http.StatusFound)
+	}
 }
 
 // SEARCH CODE
 func searchHandler(w http.ResponseWriter, r *http.Request) {
-	username := "root"
-	password := ""
+	username := "admin"
+	password := "admin"
 	host := "127.0.0.1"
 	port := "3306"
 	dbName := "pvp_naudotojams"
@@ -578,9 +606,10 @@ func homeHandler(w http.ResponseWriter, r *http.Request) {
 
 }
 
+// EDIT PAGE WITH UPDATE DATA
 func updateHandler(w http.ResponseWriter, r *http.Request) {
-	username := "root"
-	password := ""
+	username := "admin"
+	password := "admin"
 	host := "127.0.0.1"
 	port := "3306"
 	dbName := "pvp_naudotojams"
@@ -620,6 +649,20 @@ func updateHandler(w http.ResponseWriter, r *http.Request) {
 	parduotuvesID := r.FormValue("parduotuves_id")
 	parduotuvesPavadinimas := r.FormValue("parduotuves_pavadinimas")
 	parduotuvesAdresas := r.FormValue("parduotuves_adresas")
+
+	// Patikriname, ar brūkšninis kodas jau egzistuoja
+	queryCheck := `
+	SELECT COUNT(*)
+	FROM produktas
+	WHERE bruksninis_kodas = ?
+	`
+
+	var count int
+	err = db.QueryRow(queryCheck, produktoBruksninisKodas).Scan(&count)
+	if err != nil {
+		http.Error(w, err.Error(), http.StatusInternalServerError)
+		return
+	}
 
 	// Atnaujiname produktą
 	produktoQuery := `
@@ -687,13 +730,14 @@ func updateHandler(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 
-	http.Redirect(w, r, "/pagrindinis", http.StatusSeeOther)
+	redirectURL := fmt.Sprintf("/pagrindinis")
+	http.Redirect(w, r, redirectURL, http.StatusFound)
 }
 
-// BAR CODE SEARCH IN INSERT
+// BAR CODE SEARCH IN INSERT PAGE
 func barCodeHandler(w http.ResponseWriter, r *http.Request) {
-	username := "root"
-	password := ""
+	username := "admin"
+	password := "admin"
 	host := "127.0.0.1"
 	port := "3306"
 	dbName := "pvp_naudotojams"
@@ -783,7 +827,7 @@ func barCodeHandler(w http.ResponseWriter, r *http.Request) {
 		Minus:        "gallery/circle-minus-1.png",
 		Keisti:       "gallery/keisti.png",
 	}
-	http.Redirect(w, r, "/pagrindinis", http.StatusSeeOther)
+	//http.Redirect(w, r, "/pagrindinis", http.StatusSeeOther)
 	//tmpl := template.Must(template.ParseFiles("index.html"))
 	tmpl := template.Must(template.ParseFiles("prideti.html"))
 

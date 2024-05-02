@@ -409,18 +409,13 @@ background-color: lightgrey;
                           <h3 style="text-align: right; font-size:large; font-weight: 700; vertical-align: middle; margin-top: 10px;"> Administratorius </h3>
                       </div>
                       
-                      <div class="col-lg-1" id="paskyra" onclick="window.location.href='http://localhost:8080/homePage';"  >
-                            
-                              <img src="{{.Avatar}}" style=" width: 30px; height: 30px; float: right;  " alt="Avatar">
-                          
-                              <img src="{{.Bruksniai}}" style=" width: 25px; height: 25px; float: left; margin-left: 5px;" >
-                          
-                           <!--   <div id="myDropdown" class="dropdown-content" style="display:none;">
-                                <form action="/home" method="post">
-                                <button style="width: 160px;" type="submit">Atsijungti</button>
-                                </form>
-                                </div>-->
-                            </div>
+                      <div class="col-md-1" id="paskyra"  >
+                    
+                        <img src="{{.Avatar}}" style=" width: 30px; height: 30px; float: right;  " alt="Avatar" onclick="window.location.href='http://localhost:8080/admin';">
+
+                        <img src="{{.Bruksniai}}" style=" width: 25px; height: 25px; float: left; margin-left: 5px; margin-top: 1px;" alt="Avatar" onclick="window.location.href='http://localhost:8080/homePage';">
+                     
+                </div>   
                          
                           
                       </div>      

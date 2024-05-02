@@ -423,18 +423,13 @@ body {
                     <h3 style="text-align: right; font-size:large; font-weight: 700; vertical-align: middle; margin-top: 10px;"> Administratorius </h3>
                 </div>
                 
-                <div class="col-lg-1" id="paskyra" onclick="window.location.href='http://localhost:8080/admin';"  >
-                      
-                        <img src="{{.Avatar}}" style=" width: 50% ; height: 30px; float: right;  " alt="Avatar">
+                <div class="col-md-1" id="paskyra"  >
                     
-                        <img src="{{.Bruksniai}}" style=" width: 40%; height: 25px; float: right; margin-right:5px;" >
-                    
-                     <!--   <div id="myDropdown" class="dropdown-content" style="display:none;">
-                          <form action="/home" method="post">
-                          <button style="width: 160px;" type="submit">Atsijungti</button>
-                          </form>
-                          </div>-->
-                      </div>
+                  <img src="{{.Avatar}}" style=" width: 30px; height: 30px; float: right;  " alt="Avatar" onclick="window.location.href='http://localhost:8080/admin';">
+
+                  <img src="{{.Bruksniai}}" style=" width: 25px; height: 25px; float: left; margin-left: 5px; margin-top: 1px;" alt="Avatar" onclick="window.location.href='http://localhost:8080/homePage';">
+               
+          </div>   
                    
                     
                 </div>      
