@@ -1,7 +1,6 @@
 package main
 
 import (
-	"fmt"
 	"log"
 	"net/http"
 
@@ -42,11 +41,8 @@ func main() {
 	// Nustatome middleware, kuris tikrins, ar vartotojas yra prisijungęs prie kiekvieno užklausos
 
 	http.HandleFunc("/", func(w http.ResponseWriter, r *http.Request) {
-
 		session, err := store.Get(r, "session-name")
-		if !session.Values["LoggedIn"].(bool) {
-			//fmt.Println(session.LoggedIn)
-
+		if session.Values["LoggedIn"] == nil {
 			// Jei vartotojas nėra prisijungęs, jį peradresuojame į prisijungimo puslapį
 			http.Redirect(w, r, "/homePage", http.StatusSeeOther)
 			return
@@ -84,10 +80,5 @@ func main() {
 		}
 	})
 
-	fmt.Println("Serveris veikia adresu: http://localhost:8080")
-	http.ListenAndServe(":8080", nil)
-	fmt.Println("hello world")
-
-	log.Fatal(http.ListenAndServe(":8000", nil))
-
+	log.Fatal(http.ListenAndServe(":8080", nil))
 }

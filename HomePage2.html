@@ -13,43 +13,48 @@
 <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>-->
 
     <style>
-   
+     
      
  #turinys{
-    height: 1128px;
-    width: 3070px ; /* This ensures the body takes at least the full height of the viewport */
+    height: 558px; /* This ensures the body takes at least the full height of the viewport */
     background-image: linear-gradient(to right, #1dc1d4,  #f1db60 85%);
     background-image: url({{.Efektas}});
     opacity: 0.7;
     position: relative;
-    background-size: cover; /* Adjusted property */
-   
-    /* Adjusted property */
+    
 
  }
 
-
+ #turinys::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-image: url('your-image.jpg'); /* Nuotrauka */
+    opacity: 0.3; /* Permatomumo lygis */
+    z-index: -1; /* Kad pseudo-elementas būtų po turiniu */
+    background-size: cover; /* Užtikrina, kad nuotrauka užpildytų visą konteinerio plotį */
+    background-position: center; /* Centruoja nuotrauką horizontaliai ir vertikaliai */
+    background-repeat: repeat; /* Kartojasi per visą fono plotį */
+    pointer-events: none; /* Nepaleidžia pelės įvykių pseudo-elementui */
+}
 
  #turinys2{
     font-weight: 600;
-    font-size: large;
+    
+
 
  }
- #turinys2 h2{
-    font-size: 50px;
- }
-
      .content {
     font-size: 16px;
-    width:  1820px ;
-    height: calc(1000px * 2);
+    width: 200px;
+    height: 100px;
     background-color: lightblue;
     text-align: center;
     line-height: 100px;
   }
-
- 
-
 .pagination {
   display: inline-block;
   
@@ -76,7 +81,6 @@
 }
 #pav{
   color: #000;
-  font-size: 80px;
 }
 #juostos-op{
 background-color: #FFFFFF;
@@ -94,21 +98,15 @@ transition-duration: 0.4s;
 
 .pagination a:hover {background-color: grey;}
 
-#link ul{
 
-
-}
 ul{
   color: #000000;
 }
 
 li{
-    padding: 10px;
-    margin-top: 10px;
   margin-right: 10px;
-  font-size: 50px;
+  font-size: x-large;
   font-weight: 700;
-
 
 }
 
@@ -316,15 +314,9 @@ transition-duration: 0.4s;
 
 
      }
-     .navbar-nav .page {
-    height: 60px;
-    border-radius: 20px ;
-    padding: 20px;
-}
      .navbar-nav .page3 {
     background-color: blue !important;
-    border-radius: 20px ;
-    padding: 20px;
+    border-radius: 30px;
 }
 
     #div3{background-color: #5B70DF;}
@@ -350,8 +342,8 @@ transition-duration: 0.4s;
             }
 
             #bruksniai{
-              border-radius: calc(20px * 2) ;
-              max-width: calc(95px * 2);
+              border-radius: 20px ;
+              max-width: 95px;
               transition-duration: 0.4s;
               cursor: pointer;
             }
@@ -360,19 +352,15 @@ transition-duration: 0.4s;
 
 
             }
-            body {
-        transform: scale(0.80);
-        transform-origin: top left;
-    }
+
     #poskyriai{
-        border: calc(2px * 2) solid black; /* Border width, style, and color */
-        border-radius: calc(100px * 2) ;
-        margin: calc(20px * 2) calc(20px * 2) calc(20px * 2) calc(180px * 2);
+        border: 2px solid black; /* Border width, style, and color */
+        border-radius: 100px ;
+        margin: 20px 20px 20px 180px;
         text-align: center;
        
 
     }
-    
     .navbar-nav.pull-right {
     display: flex;
     justify-content: flex-end;
@@ -392,30 +380,41 @@ transition-duration: 0.4s;
 <body>
 
 <div class= "container-fluid" >
-   <div style="background-color:#000000 ; width: 3055px; " class="row" > 
+   <div style="background-color:#000000 ; " class="row"> 
     <div  class="col-md-12">
       <!--<h1 class = "mb-4">Film List</h1>-->  
-        <h1 style="text-align: left; color: gray; font-weight: 600;"> Pagrindinis puslapis(Home page) </h1>
+        <h6 style="text-align: left; color: gray; font-weight: 600;"> Pagrindinis puslapis(Home page) </h6>
     </div>
    </div> 
    
-   <div  style="background-color:#000000  ; height: 130px; width: 3055px; " class="row"> 
+   <div  style="background-color:#000000 ; " class="row"> 
     <div  class="col-md-12">
-   <nav class="navbar navbar-inverse" style="font-size: larger; height: 100px; width: 3000px; border-radius: 50px; ">
+   <nav class="navbar navbar-inverse">
     <div  class="container-fluid">
         <div class="row">
             <div  class="col-md-12">
             
       <ul  class="nav navbar-nav">
-        <li class="active" ><a class="page" href="#">Home</a></li>
-        <li class="active"><a class="page" onclick="programa(this)" href="#">Apie programą</a></li>
-        <li > <a class="page" onclick="kontaktai(this)" href="#">Kontaktai</a></li>
-        <li ><a class="page" onclick="darbuotojai(this)"  href="#">Projekto atstovai</a></li>
-        <li > <a class="page" style="visibility: hidden;" href="#">Kontaktai</a></li>
-        <li > <a class="page" style="visibility: hidden;" href="#">Kontaktai</a></li>
-        <li > <a class="page" style="visibility: hidden;" href="#">Kontaktai</a></li>
-        <li > <a class="page" style="visibility: hidden;" href="#">Kontaktai</a></li>
-        <li ><a href="#" class="page3 pull-right" onclick="window.location.href='/login'"  style="float: right;" >Prisijungti</a></li>
+        <li class="dropdown active">
+          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Keisti šriftą: <span class="caret"></span></a>
+          <ul class="dropdown-menu">
+            <!-- Dropdown menu items -->
+            <li><a href="#" onclick="changeFontSize('small',this)">Mažas</a></li>
+            <li><a href="#" onclick="changeFontSize('smaller',this)">Mažesnis</a></li>
+            <li class="active"><a href="#" onclick="changeFontSize('medium',this)">Vidutinis</a></li>
+            <li><a href="#" onclick="changeFontSize('larger',this)">Didesnis</a></li>
+            <li><a href="#" onclick="changeFontSize('x-large',this)">Didelis</a></li>
+            <!-- Add more submenu items as needed -->
+          </ul>
+        </li>
+        <li class="active"><a onclick="programa(this)" href="#">Apie programą</a></li>
+        <li > <a onclick="kontaktai(this)" href="#">Kontaktai</a></li>
+        <li ><a onclick="darbuotojai(this)"  href="#">Projekto atstovai</a></li>
+        <li > <a style="visibility: hidden;" href="#">Kontaktai</a></li>
+        <li > <a style="visibility: hidden;" href="#">Kontaktai</a></li>
+        <li > <a style="visibility: hidden;" href="#">KontaktaiKont</a></li>
+       
+        <li ><a href="#" class="page3 pull-right" onclick="window.location.href='/login'"  style="float: right; margin-right: 5px;" >Prisijungti</a></li>
         
       </ul>
     </div>
@@ -433,24 +432,23 @@ transition-duration: 0.4s;
                     // Paimkite sąrašo elementą pagal ID
 // Get each li element by its ID
 
-
 // Add click event listeners to each li element
 
                     function kontaktai(element) {
 
-                        var header = "<h2 style= \" font-weight: 700; color:black; font-size: 80px\"> Kontaktai: </h2>";
-                        var naujasTurinys = "<ul id=ul2 >" + 
-                                            "<li>Paštas: petras.petraitis@gmail.com</li>" +
-                                            "<li>Telefonas: +37057412489</li>" +
-                                            "<li>Adresas: ????????????????</li>" +
+                        var header = "<h2 id=\"sriftas\"  style= \" font-weight: 700; color:black;\"> Kontaktai: </h2>";
+                        var naujasTurinys = "<ul >" + 
+                                            "<li id=\"sriftas2\">Paštas: petras.petraitis@gmail.com</li>" +
+                                            "<li id=\"sriftas3\">Telefonas: +37057412489</li>" +
+                                            "<li id=\"sriftas4\">Adresas: ????????????????</li>" +
                                             "</ul>";
                         
                                             var navLinks = document.querySelectorAll('.nav.navbar-nav li');
     navLinks.forEach(function(link) {
-        if (!link.contains(element.parentElement) || link.textContent === "Home") {
+        if (!link.contains(element.parentElement) || link.textContent === "Keisti šriftą:") {
             link.classList.remove('active');
         }
-        if (link.textContent === "Home") {
+        if (link.textContent === "Keisti šriftą:") {
             link.classList.add('active');
         }
     });
@@ -465,10 +463,10 @@ transition-duration: 0.4s;
                         //document.getElementById("link3").innerHTML = link3;
                         var navLinks = document.querySelectorAll('.nav.navbar-nav li');
     navLinks.forEach(function(link) {
-        if (!link.contains(element.parentElement) || link.textContent === "Home") {
+        if (!link.contains(element.parentElement) || link.textContent === "Keisti šriftą:") {
             link.classList.remove('active');
         }
-        if (link.textContent === "Home") {
+        if (link.textContent === "Keisti šriftą:") {
             link.classList.add('active');
         }
     });
@@ -477,14 +475,14 @@ transition-duration: 0.4s;
     element.parentElement.classList.add('active');
                     }
                     function darbuotojai(element) {
-                        var header = "<h2 style= \" font-weight: 700; color:black; font-size: 80px \"  > Prie šio darbo prisidėjo: </h2>";
-                        var naujasTurinys = "<ul id=ul2>" + 
-                                            "<li>Eimantas Rimkus</li>" +
-                                            "<li>Gina Mankute</li>" +
-                                            "<li>Guoda Dženkaityte</li>" +
-                                            "<li>Joris Kviesulaitis</li>" +
-                                            "<li>Martynas Jakovlevas</li>" +
-                                            "<li>Mykolas Žukaitis</li>" +
+                        var header = "<h2 id=\"sriftas\" style= \" font-weight: 700; color:black; \"  > Prie šio darbo prisidėjo: </h2>";
+                        var naujasTurinys = "<ul>" + 
+                                            "<li id=\"sriftas2\">Eimantas Rimkus</li>" +
+                                            "<li id=\"sriftas3\">Gina Mankute</li>" +
+                                            "<li id=\"sriftas4\">Guoda Dženkaityte</li>" +
+                                            "<li id=\"sriftas5\">Joris Kviesulaitis</li>" +
+                                            "<li id=\"sriftas6\">Martynas Jakovlevas</li>" +
+                                            "<li id=\"sriftas7\">Mykolas Žukaitis</li>" +
                                             "</ul>";
                        
                         document.getElementById("pav").innerHTML = header;
@@ -495,10 +493,10 @@ transition-duration: 0.4s;
                      //   document.getElementById("link3").innerHTML = link3;
                      var navLinks = document.querySelectorAll('.nav.navbar-nav li');
     navLinks.forEach(function(link) {
-        if (!link.contains(element.parentElement) || link.textContent === "Home") {
+        if (!link.contains(element.parentElement) || link.textContent === "Keisti šriftą:") {
             link.classList.remove('active');
         }
-        if (link.textContent === "Home") {
+        if (link.textContent === "Keisti šriftą:") {
             link.classList.add('active');
         }
     });
@@ -517,18 +515,18 @@ transition-duration: 0.4s;
                     function programa(element) {
                         var navLinks = document.querySelectorAll('.nav.navbar-nav li');
     navLinks.forEach(function(link) {
-        if (!link.contains(element.parentElement) || link.textContent === "Home") {
+        if (!link.contains(element.parentElement) || link.textContent === "Keisti šriftą:") {
             link.classList.remove('active');
         }
-        if (link.textContent === "Home") {
+        if (link.textContent === "Keisti šriftą:") {
             link.classList.add('active');
         }
     });
 
     // Pridedame "active" klasę paspaustai nuorodai
     element.parentElement.classList.add('active');
-                        var header = "<h2 id=pav style= \" font-weight: 700; color:black;  \">Apie programėlę <h2>";
-                        var naujasTurinys = "<h2 id=turinys2 style = \" font-weight: 600;  color:black; \">skirtą naudotis silpnaregiams arba prastai matantiems senjorams, kurie turėdami mobilųjį telefoną, nuskenuotų prekės brūkšninį kodą ir savo telefono ekrane galėtų matyti visą informaciją padidintu šriftu.</h2>";
+                        var header = "<h2 id=\"sriftas\" style= \" font-weight: 700; color:black;  \">Apie programėlę <h2>";
+                        var naujasTurinys = "<h5 id=\"sriftas2\" style = \" font-weight: 600; font-size:x-large; color:black; \">skirtą naudotis silpnaregiams arba prastai matantiems senjorams, kurie turėdami mobilųjį telefoną, nuskenuotų prekės brūkšninį kodą ir savo telefono ekrane galėtų matyti visą informaciją padidintu šriftu.</h5>";
                         var link1= "<li class=\"active\" id=\"link1\" ><a  onclick=\"programa()\" href=\"#\">Apie programą</a></li>";
                         var link2= "<li id=\"link2\" ><a  onclick=\"kontaktai()\" href=\"#\">Kontaktai</a></li>";
                         var link3= "<li id=\"link3\" ><a  onclick=\"darbuotojai()\" href=\"#\">Projekto atstovai</a></li>";
@@ -545,7 +543,111 @@ transition-duration: 0.4s;
        "<li class=\"active\" > <a  onclick=\"darbuotojai()\"  href=\"#\">Projekto atstovai</a></li>"+
        "<li><a href=\"#\">Page 3</a></li>";
                     }
-                    document.getElementById("link").innerHTML = link;
+                 //   document.getElementById("link").innerHTML = link;
+
+
+
+                    function changeFontSize(size,element2) {
+
+  var turinysElement = document.getElementById('pav');
+  var liElement = document.getElementById('sriftas');
+  var turinys2Element = document.getElementById('sriftas2');
+  var li1Element = document.getElementById('sriftas3');
+  var li2Element = document.getElementById('sriftas4');
+  var li3Element = document.getElementById('sriftas5');
+  var li4Element = document.getElementById('sriftas6');
+  var li5Element = document.getElementById('sriftas7');
+  var li6Element = document.getElementById('sriftas8');
+  
+
+
+  var busena = document.querySelectorAll('.dropdown-menu li');
+
+  switch(size) {
+  case "small":
+    // code block
+    liElement.style.fontSize = "20px";
+  turinysElement.style.fontSize = "20px";
+  turinys2Element.style.fontSize = "10px";
+  li1Element.style.fontSize = "10px";
+  li2Element.style.fontSize = "10px";
+  li3Element.style.fontSize = "10px";
+  li4Element.style.fontSize = "10px";
+  li5Element.style.fontSize = "10px";
+  li6Element.style.fontSize = "10px";
+    break;
+  case "smaller":
+    // code block
+    liElement.style.fontSize = "30px";
+  turinysElement.style.fontSize = "20px";
+  turinys2Element.style.fontSize = "20px";
+  li1Element.style.fontSize = "20px";
+  li2Element.style.fontSize = "20px";
+  li3Element.style.fontSize = "20px";
+  li4Element.style.fontSize = "20px";
+  li5Element.style.fontSize = "20px";
+  li6Element.style.fontSize = "20px";
+    break;
+    case "medium":
+    // code block
+    liElement.style.fontSize = "35px";
+  turinysElement.style.fontSize = "30px";
+  turinys2Element.style.fontSize = "30px";
+  li1Element.style.fontSize = "30px";
+  li2Element.style.fontSize = "30px";
+  li3Element.style.fontSize = "30px";
+  li4Element.style.fontSize = "30px";
+  li5Element.style.fontSize = "30px";
+  li6Element.style.fontSize = "30px";
+    break;
+    case "larger":
+    liElement.style.fontSize = "50px";
+  turinysElement.style.fontSize = "40px";
+  turinys2Element.style.fontSize = "40px";
+  li1Element.style.fontSize = "40px";
+  li2Element.style.fontSize = "40px";
+  li3Element.style.fontSize = "40px";
+  li4Element.style.fontSize = "40px";
+  li5Element.style.fontSize = "40px";
+  li6Element.style.fontSize = "40px";
+    // code block
+    break;
+    case "x-large":
+    liElement.style.fontSize = "60px";
+  turinysElement.style.fontSize = "50px";
+  turinys2Element.style.fontSize = "50px";
+  li1Element.style.fontSize = "50px";
+  li2Element.style.fontSize = "50px";
+  li3Element.style.fontSize = "50px";
+  li4Element.style.fontSize = "50px";
+  li5Element.style.fontSize = "50px";
+  li6Element.style.fontSize = "50px";
+    // code block
+    break;
+ 
+    // code block
+} 
+
+  //liElement.style.fontSize = size;
+  //turinysElement.style.fontSize = size;
+  //turinys2Element.style.fontSize = size;
+  //li1Element.style.fontSize = size;
+  //li2Element.style.fontSize = size;
+  //li3Element.style.fontSize = size;
+  //li4Element.style.fontSize = size;
+  //li5Element.style.fontSize = size;
+  //li6Element.style.fontSize = size;
+  
+  busena.forEach(function(link) {
+       
+        
+            link.classList.remove('active');
+            element2.parentElement.classList.add('active');
+        
+    });
+
+  
+}
 
                     </script>
 
@@ -574,30 +676,33 @@ transition-duration: 0.4s;
         </div><!--class="row"-->  
         <div  class="row" style="background-color: white;"> 
             <div id ="turinys"  class="col-lg-12"> 
-                <div class="container-fluid" style="text-align: center;">
+                <div class="container">
                     <div class="row" style="text-align: center; " >
-                <h1 class="text-dark" id="pav" style="font-weight: 700; font-size: 80px; ">Apie programėlę</h1>
+                <h2 id="pav"   style="font-weight: 700; ">Apie programėlę</h2>
             </div>
             <div class="row"  >
-                <div class="col-lg-2"  ></div>
-               
-               <div  id="turinys2" class="col-lg-8" >
+               <div class="col-lg-1"> 
+               </div>
+               <div  id="turinys2" class="col-lg-10">
                 <!-- TURINIO TEKSTAS  PRADŽIA--> 
-                <h2 style=" font-weight: 600;  color:black; ">skirtą naudotis silpnaregiams arba prastai matantiems senjorams, kurie turėdami mobilųjį telefoną, nuskenuotų prekės brūkšninį kodą ir savo telefono ekrane galėtų matyti visą informaciją padidintu šriftu.</h2>
+                <h5  id="sriftas" style=" font-weight: 600; font-size: x-large; color:black;">skirtą naudotis silpnaregiams arba prastai matantiems senjorams, kurie turėdami mobilųjį telefoną, nuskenuotų prekės brūkšninį kodą ir savo telefono ekrane galėtų matyti visą informaciją padidintu šriftu.</h5>
                 <!-- TURINIO TEKSTAS  PABAIGA--> 
                </div>
-               <div class="col-lg-2"  ></div>
+               <div class="col-lg-1"> 
+               </div>
             </div>
-            
+            <div class="row" >
+                
+        </div>
                 </div>
             </div>
         </div><!--class="row"-->  
            
         
-            <div style="background-color:#000000 ; vertical-align:text-bottom; width: 3070px;" class="row" > 
-             <div style="vertical-align: bottom; "  class="col-md-12" >
+            <div style="background-color:#000000 ; vertical-align:text-bottom" class="row" > 
+             <div style="vertical-align: bottom;"  class="col-md-12">
                <!--<h1 class = "mb-4">Film List</h1>-->  
-                 <h1 style=" vertical-align: bottom; text-align: center; background-color: #000000;  font-weight: 600; color: white; "> 2024 .. Visos teisės saugomos </h1>
+                 <h6  style=" vertical-align: bottom; text-align: center; background-color: #000000;  font-weight: 600; color: white;"> 2024 .. Visos teisės saugomos </h6>
              </div>
     </div>  
 

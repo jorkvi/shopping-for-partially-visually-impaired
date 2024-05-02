@@ -41,8 +41,8 @@ type Film struct {
 
 // EDIT BUTTON SQL CODE AND ALL FUNCTIONS
 func editHandler(w http.ResponseWriter, r *http.Request) {
-	username := "admin"
-	password := "admin"
+	username := "root"
+	password := ""
 	host := "127.0.0.1"
 	port := "3306"
 	dbName := "pvp_naudotojams"
@@ -135,7 +135,7 @@ func editHandler(w http.ResponseWriter, r *http.Request) {
 		Keisti:       "gallery/keisti.png",
 	}
 
-	tmpl := template.Must(template.ParseFiles("prideti.html"))
+	tmpl := template.Must(template.ParseFiles("redagavimas.html"))
 
 	if err := tmpl.Execute(w, struct {
 		PageData
@@ -148,8 +148,8 @@ func editHandler(w http.ResponseWriter, r *http.Request) {
 
 // DELETE BUTTON CODE
 func deleteHandler(w http.ResponseWriter, r *http.Request) {
-	username := "admin"
-	password := "admin"
+	username := "root"
+	password := ""
 	host := "127.0.0.1"
 	port := "3306"
 	dbName := "pvp_naudotojams"
@@ -195,8 +195,8 @@ func deleteHandler(w http.ResponseWriter, r *http.Request) {
 
 // AFTER LOGIN PAGE CODE "/pagrininis"
 func h1(w http.ResponseWriter, r *http.Request) {
-	username := "admin"
-	password := "admin"
+	username := "root"
+	password := ""
 	host := "127.0.0.1"
 	port := "3306"
 	dbName := "pvp_naudotojams"
@@ -349,8 +349,8 @@ func h2(w http.ResponseWriter, r *http.Request) {
 
 // INSER CODE
 func insertHandler(w http.ResponseWriter, r *http.Request) {
-	username := "admin"
-	password := "admin"
+	username := "root"
+	password := ""
 	host := "127.0.0.1"
 	port := "3306"
 	dbName := "pvp_naudotojams"
@@ -462,8 +462,8 @@ func insertHandler(w http.ResponseWriter, r *http.Request) {
 
 // SEARCH CODE
 func searchHandler(w http.ResponseWriter, r *http.Request) {
-	username := "admin"
-	password := "admin"
+	username := "root"
+	password := ""
 	host := "127.0.0.1"
 	port := "3306"
 	dbName := "pvp_naudotojams"
@@ -579,8 +579,8 @@ func homeHandler(w http.ResponseWriter, r *http.Request) {
 }
 
 func updateHandler(w http.ResponseWriter, r *http.Request) {
-	username := "admin"
-	password := "admin"
+	username := "root"
+	password := ""
 	host := "127.0.0.1"
 	port := "3306"
 	dbName := "pvp_naudotojams"
@@ -692,8 +692,8 @@ func updateHandler(w http.ResponseWriter, r *http.Request) {
 
 // BAR CODE SEARCH IN INSERT
 func barCodeHandler(w http.ResponseWriter, r *http.Request) {
-	username := "admin"
-	password := "admin"
+	username := "root"
+	password := ""
 	host := "127.0.0.1"
 	port := "3306"
 	dbName := "pvp_naudotojams"

@@ -108,8 +108,8 @@ transition-duration: 0.4s;
         
         
     }
-     #skyriukai h3{
-
+    #skyriukai h5{
+        font-size: large;
         font-weight: 800;
     }
     #skyriukai:hover{
@@ -120,7 +120,7 @@ transition-duration: 0.4s;
 
    
     #juosta{
-        margin: 20px 20px 20px 20px;
+        margin: 20px 20px 0px 20px;
         text-align: center;
 
     }
@@ -134,7 +134,7 @@ transition-duration: 0.4s;
     #juosta p{
       
         font-weight: 800;
-        font-size: xx-large;
+        font-size: larger;
 
     }
 
@@ -154,7 +154,7 @@ transition-duration: 0.4s;
         }
         #staciakamp{
 
-            border: 2px solid black; /* Border width, style, and color */
+            border: 1px solid black; /* Border width, style, and color */
             
 
         }
@@ -165,6 +165,18 @@ transition-duration: 0.4s;
            
 
         }
+
+        #juostos-efektas{
+    background-color: #FFFFFF;
+transition-duration: 0.4s;
+  cursor: pointer;
+  border-radius: 100px;
+ height: 80px;
+}
+#juostos-efektas:hover {
+
+background-color: lightgrey;
+}
 
         #div1 h1{
             margin-top: 10px;
@@ -243,8 +255,9 @@ transition-duration: 0.4s;
 
     #paskyra{
              border: 2px solid black; /* Border width, style, and color */
-              border-radius: 40px ;
-              max-width: 135px;
+             border-radius: 40px ;
+              max-width: 90px;
+              max-height: 50px;
               padding: 10px;
               margin-right: 10px;
               transition-duration: 0.4s;
@@ -312,6 +325,18 @@ transition-duration: 0.4s;
             cursor: pointer;
             font-size: 16px;
         }
+        
+        #bruksniai{
+              border-radius: 20px ;
+              max-width: 95px;
+              transition-duration: 0.4s;
+              cursor: pointer;
+            }
+            #bruksniai:hover{
+              background-color: lightgray;
+
+
+            }
         input[type="submit"]:hover {
             background-color: #798ef8;
         }
@@ -331,92 +356,170 @@ transition-duration: 0.4s;
 </head>
 <body>
 
-<div class= "container-fluid" >
-   <div style="background-color:#000000 ; " class="row"> 
-    <div  class="col-lg-12">
-      <!--<h1 class = "mb-4">Film List</h1>-->  
-        <h3 style="text-align: left; color: gray; font-weight: 600;"> Duomenų įterpimas </h3>
-    </div>
-   </div>
-    <div  class="row"> 
-    <div id ="staciakamp"  class="col-lg-2"> <!--VIRŠUTINIS KAIRYSIS STAČIAKAMPIS PRADŽIA-->
-        
-        <img  src="{{.Ikona}}" style=" width: 300px; height: 300px" alt="Ikona"> 
-       
-       <div>
-        <img src="{{.Bruksniai}}" style=" width: 90px; height: 90px" alt="Bruksniai">
-    </div>
-    </div> <!--VIRŠUTINIS KAIRYSIS STAČIAKAMPIS PABAIGA-->
+    <div class="w3-sidebar w3-bar-block w3-border-right w3-animate-left" style="display:none" id="mySidebar">
+        <button onclick="w3_close()" class="w3-bar-item w3-button w3-large">Close &times;</button>
+        <a href="#" class="w3-bar-item w3-button" onclick="window.location.href='http://localhost:8080/homePage';">HomePage</a>
+        <a href="#" class="w3-bar-item w3-button" onclick="window.location.href='http://localhost:8080/pagrindinis';">Prekės</a>
+      </div>
 
-     <div id="staciakamp"   class="col-lg-10" > <!--VIRŠUTINIS DEŠINYSIS STAČIAKAMPIS PRADŽIA-->
-          <!-- VIRŠUTINĖ ADMINISTRATORIAUS DUOMENŲ BAZĖS DALIS-->
-          <div class= "container-fluid">   
-            <div style="margin-top: 30px; " class="row">
-                <div class="col-lg-11" >
-                    <!-- PASKYROS DALIS-->
-                    <h3 style="text-align: right;margin-top: 20px; margin-right: 50px; font-size: xx-large; font-weight: 700; vertical-align: middle;"> Administratorius </h3>
-                </div>
-                <div class="col-lg-1" id="paskyra" onclick="window.location.href='http://localhost:8080/admin';"  >
-                    
-                        <img src="{{.Avatar}}" style=" width: 50px; height: 50px; float: right; margin-top: 5px; " alt="Avatar">
-
-                        <img src="{{.Bruksniai}}" style=" width: 40px; height: 40px; float: right; padding:2px;  margin-bottom:10px; margin-top:10px; margin-right:10px;" alt="Avatar">
-                     
-                </div>      
-                    
-
-                
-                <div style="margin-left: 750px; " id="skyriukai" class="col-lg-5" > <!--  Tekstas "Produktai"-->
-
-                    <h3 style="text-align: center;padding-top: 20px ; "> Produktai </h3>
-
-                    
-                </div>
-                <div id="skyriukai" style="margin-left: 100px  ; text-align: center;" class="col-lg-1" > <!--  Tekstas "Kodas"-->
-                    <h3 style=" padding-top: 20px ;"> Kodas </h3>
-
-                    
-                </div>
-                <div style="text-align: center; margin-left: 100px;  " id="skyriukai" class="col-lg-5" > <!--  Tekstas "Būsimi projektai"-->
-                    <h3> Būsimi projektai  </h3>
-
-                    
-                </div>
-
-
-            </div>
-
-            
-              <form action="/search" method="post" >
-              <div id="juosta"  class="row"> <!--JUOSTELĖ -->
-                <div class="col-lg-9">
-                    <div id="poskyriai"  class= "container-fluid"> 
-                        <div  class="row">
-                        <div style="margin-left: 0px;" id="juostos-op" class="col-lg-3"> <!--Produkto paieška | ieškoti produkto-->
-                            <p> Produkto paieška </p>           
-                            <input type="text" placeholder="Pavadinimas" name="produkto_pavadinimas"  style="font-size: 25px; border: none; background-color: transparent;"><br>
-                        </div>
-                        <div id="juostos-op" class="col-lg-3"> <!--Produkto kodas | kodas-->
-                            <p> Produkto kodas </p>
-                            <input type="text" placeholder="Kodas"  name="produkto_kodas" style="font-size: 25px; border: none; background-color: transparent;" ><br>
-                        </div>
-                        <div id="juostos-op" class="col-lg-3"> <!--Parduotuvė | Pavadinimas-->
-                            <p> Parduotuvė </p>
-                            <input type="text" placeholder="Pavadinimas"  name="parduotuves_pavadinimas" style="font-size: 25px;  border: none; background-color: transparent;" ><br>
-                        </div>
-                            <div class="col-lg-2">
-                                <button type="submit" style="width: 80px; height: 65px; padding: 5px; margin: 30px 0px 20px 0px; float: right; background: url('{{.Lupa}}') no-repeat center; background-size: contain; border: none;" alt="Labas"></button>
-                            </form>
-                              </div>
-                        </div>
-                        </div> 
-                    </div>
-                </div> <!--JUOSTELĖ PABAIGA-->
-            </div>
-
-
+      <div class= "container-fluid"  >
+        <!-- <div style="background-color:#000000 ; height: 25px; " class="row"> -->
+          <div style="background-color:#000000 ; height: 30%; " class="row"> 
+          <div  class="col-lg-12">
+            <!--<h1 class = "mb-4">Film List</h1>-->  
+              <p style="text-align: left; color:  gray; font-weight: 600; "> Administratoriaus paskyros redagavimo puslapis </p>
           </div>
-     </div> <!--VIRŠUTINIS DEŠINYSIS STAČIAKAMPIS Pabaiga-->
+         </div>
+      
+         
+          <div  class="row"> 
+         <!--   <div id ="staciakamp"  style=" height: 260px; width:  252px; " class="col-lg-2">-->
+          <div id ="staciakamp"  style=" height: 260px; width:  15%; " class="col-lg-2"> <!--VIRŠUTINIS KAIRYSIS STAČIAKAMPIS PRADŽIA-->
+              
+              <img  src="{{.Ikona}}" style=" width: 200px; height: 200px" alt="Ikona"> 
+             
+             <div id="bruksniai" style="height: 52px; width: 56px;" onclick="w3_open()" >
+              <img src="{{.Bruksniai}}" style=" width: 55px; height: 55px" alt="Bruksniai">
+          </div>
+          </div> <!--VIRŠUTINIS KAIRYSIS STAČIAKAMPIS PABAIGA-->
+
+          <script>
+            function w3_open() {
+              document.getElementById("mySidebar").style.display = "block";
+              document.getElementById("main").style.marginLeft = "25%";
+        document.getElementById("mySidebar").style.width = "25%";
+        document.getElementById("mySidebar").style.display = "block";
+        document.getElementById("openNav").style.display = 'none';
+            }
+            
+            function w3_close() {
+              document.getElementById("mySidebar").style.display = "none";
+              document.getElementById("main").style.marginLeft = "0%";
+        document.getElementById("mySidebar").style.display = "none";
+        document.getElementById("openNav").style.display = "inline-block";
+            }
+            </script>
+          <!-- <div id="staciakamp"  style=" max-height: 270px; width:1266px"    class="col-lg-8" > -->
+            <div id="staciakamp"  style=" max-height: 270px; width:85%"    class="col-lg-8" > <!--VIRŠUTINIS DEŠINYSIS STAČIAKAMPIS PRADŽIA-->
+                <!-- VIRŠUTINĖ ADMINISTRATORIAUS DUOMENŲ BAZĖS DALIS-->
+                <div class= "container-fluid">   
+                  <div style="margin-top: 15px; width: 100%; height: 25px; " class="row">
+                      <div class="col-lg-11" >
+                          <!-- PASKYROS DALIS-->
+                          <h3 style="text-align: right; font-size:large; font-weight: 700; vertical-align: middle; margin-top: 10px;"> Administratorius </h3>
+                      </div>
+                      
+                      <div class="col-lg-1" id="paskyra" onclick="window.location.href='http://localhost:8080/homePage';"  >
+                            
+                              <img src="{{.Avatar}}" style=" width: 30px; height: 30px; float: right;  " alt="Avatar">
+                          
+                              <img src="{{.Bruksniai}}" style=" width: 25px; height: 25px; float: left; margin-left: 5px;" >
+                          
+                           <!--   <div id="myDropdown" class="dropdown-content" style="display:none;">
+                                <form action="/home" method="post">
+                                <button style="width: 160px;" type="submit">Atsijungti</button>
+                                </form>
+                                </div>-->
+                            </div>
+                         
+                          
+                      </div>      
+                          
+                      <script>
+                        document.addEventListener('DOMContentLoaded', function() {
+          var dropdownTrigger = document.getElementById('dropdownTrigger');
+          dropdownTrigger.addEventListener('click', function() {
+              var dropdown = document.getElementById("myDropdown");
+              dropdown.style.display = dropdown.style.display === "none" ? "block" : "none";
+          });
+      
+          // Close the dropdown if the user clicks outside of it
+          window.onclick = function(event) {
+              if (!event.target.matches('#dropdownTrigger')) {
+                  var dropdowns = document.getElementsByClassName("dropdown-content");
+                  for (var i = 0; i < dropdowns.length; i++) {
+                      var openDropdown = dropdowns[i];
+                      if (openDropdown.style.display === "block") {
+                          openDropdown.style.display = "none";
+                      }
+                  }
+              }
+          }
+      });
+                        </script>
+      
+                    <div class="row" style="height: 60px;">
+                      <div style="margin-left: 300px; " id="skyriukai" class="col-md-5" > <!--  Tekstas "Produktai"-->
+      
+                          <h5 style="text-align: center; padding: 20px; "> Produktai </h5>
+      
+                          
+                      </div>
+                      <div id="skyriukai" style=" text-align: center;" class="col-md-2" > <!--  Tekstas "Kodas"-->
+                          <h5 style=" padding-top: 20px ;"> Kodas </h5>
+      
+                          
+                      </div >
+                      <div style="text-align: center; padding: 19px; " id="skyriukai" class="col-md-5" > <!--  Tekstas "Būsimi projektai"-->
+                          <h5> Būsimi projektai  </h5>
+      
+                          
+                      </div>
+                    </div>
+      
+                  </div>
+      
+                  <script>
+                    function validateForm() {
+                        var bruksninisKodas = document.getElementsByName('produktas_bruksninis_kodas')[0].value;
+                        var kaina = document.getElementsByName('produktas_kaina')[0].value;
+                
+                        // Tikriname, ar bruksninis kodas yra sveikas skaičius
+                        if (!Number.isInteger(Number(bruksninisKodas))) {
+                            alert('Bruksninis kodas turi būti sveikas skaičius!');
+                            return false;
+                        }
+                
+                        // Tikriname, ar kaina yra teigiamas skaičius
+                        if (Number(kaina) <= 0 || isNaN(Number(kaina))) {
+                            alert('Kaina turi būti teigiamas skaičius!');
+                            return false;
+                        }
+                
+                        // Jei viskas gerai, leidžiame formą pateikti
+                        return true;
+                    }
+                </script>
+                  <form action="/search" method="post" onsubmit="return validateForm()">
+                    <div id="juosta"  class="row" > <!--JUOSTELĖ -->
+                      <div class="col-lg-9">
+                          <div id="poskyriai"  class= "container-fluid" > 
+                              <div  class="row">
+                              <div style="margin-left: 50px;" id="juostos-efektas" class="col-lg-3"> <!--Produkto paieška | ieškoti produkto-->
+                                  <p> Produkto paieška </p>           
+                                  <input type="text" placeholder="Pavadinimas" name="produkto_pavadinimas"  style="font-size: 15px; border: none; background-color: transparent;"><br>
+                              </div>
+                              <div id="juostos-efektas" class="col-lg-3"> <!--Produkto kodas | kodas-->
+                                  <p> Produkto kodas </p>
+                                  <input type="text" placeholder="Kodas"  name="produkto_kodas" style="font-size: 15px; border: none; background-color: transparent;" ><br>
+                              </div>
+                              <div id="juostos-efektas" class="col-lg-3"> <!--Parduotuvė | Pavadinimas-->
+                                  <p> Parduotuvė </p>
+                                  <input type="text" placeholder="Pavadinimas"  name="parduotuves_pavadinimas" style="font-size: 15px;  border: none; background-color: transparent;" ><br>
+                              </div>
+                                  <div class="col-lg-2">
+                                      <button type="submit" style="width: 45px; height: 45px; padding: 5px; margin: 20px 30px 20px 0px; float: right; background: url('{{.Lupa}}') no-repeat center; background-size: contain; border: none;" alt="Labas"></button>
+                                  </form>
+                                    </div>
+                            </div>
+                            </div> 
+                        </div>
+                    </div> <!--JUOSTELĖ PABAIGA-->
+                  </div>
+      
+      
+                </div>
+           </div> <!--VIRŠUTINIS DEŠINYSIS STAČIAKAMPIS Pabaiga-->
 
      </div> <!--class= "row" -->
     </div> <!--class= "container-fluid" -->
@@ -430,11 +533,12 @@ transition-duration: 0.4s;
 <!--------------------------------------------KONTEINERIO ATSKYRIMAS------------------------------------------------------------->
 
 
-<div class="container-fluid">
-    <div  class="row" style="height: 1100px;"> 
+<!--<div class="container-fluid">
+
+   <div  class="row" style="height: 1100px;"> 
 
         <div id="staciakamp" class="col-lg-2">
-        <!--<h1 class = "mb-4">Film List</h1>    -->  
+        <h1 class = "mb-4">Film List</h1>      
         <div id="son" style="margin-top: 40px; border-bottom: 2px solid gray; " >
             <a href="/pagrindinis" style="text-decoration: none; color: black;">
                 <img src="{{.Prekes}}" style="width: 60px; height: 60px; float: left;" alt="Avatar">
@@ -444,7 +548,7 @@ transition-duration: 0.4s;
         </div>
         
           <div id="son" style=" border-bottom: 2px solid gray;  " style="margin-top: 20px;" >
-            <!--<h1 class = "mb-4">Film List</h1>    -->  
+            <h1 class = "mb-4">Film List</h1>      
             <img src="{{.Diagramos}}" style=" width: 60px; height: 60px; float: left;" alt="Avatar">
               <h3> Diagramos </h3>
             </div>
@@ -454,14 +558,14 @@ transition-duration: 0.4s;
 
 
 
-        </div>
+        </div> -->
    
         
-   <div id="staciakamp" class="col-lg-10">
+   <div id="staciakamp" style="width: 100%;" class="col-lg-12">
     
     <!-- ADMIN DATA NUO CIA PRASIDEDA -->
     
-    <form action="/adminEdit" method="post" onsubmit="return validateForm()">
+    <form style=" padding: 20px;" action="/adminEdit" method="post" onsubmit="return validateForm()">
         <h2>Administratoriaus duomenų redagavimas</h2>
         <input type="hidden" name="id" value="{{.Kazkas}}">
         <input type="hidden" name="Druska" value="{{.Druska}}">
@@ -485,7 +589,7 @@ transition-duration: 0.4s;
     <br>
                
 </div>
-</div>
+<!--</div>-->
 </form>
         <div  class= "container-fluid" >
             <div style="background-color:#000000 ; " class="row"> 

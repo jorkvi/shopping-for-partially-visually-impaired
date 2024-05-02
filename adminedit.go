@@ -84,8 +84,8 @@ func handlerFunc(w http.ResponseWriter, r *http.Request) {
 	}
 }
 func admindata(w http.ResponseWriter, r *http.Request) {
-	username := "admin"
-	password := "admin"
+	username := "root"
+	password := ""
 	host := "127.0.0.1"
 	port := "3306"
 	dbName := "pvp_admin"

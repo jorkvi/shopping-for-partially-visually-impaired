@@ -74,8 +74,8 @@ func renderLoginPage(w http.ResponseWriter, pageVariables PageVariables) {
 			.container {
 				display: flex;
 				justify-content: center;
-				width: 800px; /* Nustatome plotį */
-				height: 600px; /* Nustatome aukštį */
+				width: 500px; /* Nustatome plotį */
+				height: 500px; /* Nustatome aukštį */
 				margin: 0 auto; /* Centruojame elementą horizontaliai */
 			}
 	
@@ -83,13 +83,13 @@ func renderLoginPage(w http.ResponseWriter, pageVariables PageVariables) {
 				background-color: white; /* Pakeičiame formos fono spalvą */
 				padding: 40px; /* Pridedame tarpą aplink formą */
 				border-radius: 40px; /* Padidiname apvalinimą */
-				width: 800px; /* Nustatome plotį */
-				height: 800px; /* Nustatome aukštį */
+				width: 600px; /* Nustatome plotį */
+				height: 600px; /* Nustatome aukštį */
 			}
 	
 			input[type="text"], input[type="password"], button {
 				margin-top: 50px;
-				width: 70%; /* Nustatome plotį langų */
+				width: 60%; /* Nustatome plotį langų */
 				padding: 15px;
 				margin: 15px 0;
 			}
@@ -103,11 +103,11 @@ func renderLoginPage(w http.ResponseWriter, pageVariables PageVariables) {
 			}
 	
 			.logo {
-				width: 350px; /* Nustatome paveikslelio dydį */
-				height: 350px;
+				width: 250px; /* Nustatome paveikslelio dydį */
+				height: 250px;
 				position: absolute; /* Nustatome absolutų pozicionavimą */
 				top: 100px; /* Atstumas nuo viršaus */
-				left: 1050px; /* Atstumas nuo kairės */
+				left: 650px; /* Atstumas nuo kairės */
 			}
 	
 			.error-message {
@@ -124,8 +124,8 @@ func renderLoginPage(w http.ResponseWriter, pageVariables PageVariables) {
 			<h2 style="margin-top: 250px;">{{.Title}} </h2>
 			<p class="error-message" style="font-size: 30px;">{{.ErrorMessage}}</p>
 			<form action="/logine" method="post">
-				<input type="text" name="email" placeholder="Elektroninis paštas" style="font-size: 30px;" required><br>
-				<input type="password" name="password" placeholder="Slaptažodis" style="font-size: 30px;" required><br>
+				<input type="text" name="email" placeholder="Elektroninis paštas" style="font-size: 20px;" required><br>
+				<input type="password" name="password" placeholder="Slaptažodis" style="font-size: 20px;" required><br>
 				<button type="submit" style="font-size: 30px;">Prisijungti</button>
 			</form>
 		</div>
@@ -147,8 +147,8 @@ func renderLoginPage(w http.ResponseWriter, pageVariables PageVariables) {
 	}
 }
 func getUserByEmail(email string) *User {
-	username := "admin"
-	password := "admin"
+	username := "root"
+	password := ""
 	host := "127.0.0.1"
 	port := "3306"
 	dbName := "pvp_admin"
