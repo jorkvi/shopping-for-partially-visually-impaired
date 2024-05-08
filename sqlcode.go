@@ -7,6 +7,7 @@ import (
 	"log"
 	"net/http"
 	"net/url"
+	"os"
 
 	_ "github.com/go-sql-driver/mysql"
 )
@@ -15,9 +16,9 @@ type Produktas struct {
 	ID                 int
 	Parduotuve_ID      int
 	Parduotuve_adresas string
-	Kodas              int
+	Kodas              string
 	Pavadinimas        string
-	Kaina              float64
+	Kaina              string
 	Kategorija         string
 	Sudetis            string
 	Maistingumas       string
@@ -44,29 +45,24 @@ type Film struct {
 
 // EDIT BUTTON SQL CODE AND ALL FUNCTIONS
 func editHandler(w http.ResponseWriter, r *http.Request) {
-	username := "admin"
-	password := "admin"
-	host := "127.0.0.1"
-	port := "3306"
-	dbName := "pvp_naudotojams"
+	username := os.Getenv("DBUSER")
+	password := os.Getenv("DBPASS")
+	dburl := os.Getenv("DBURL")
+	dbtable := os.Getenv("DBTABLE")
 
-	// Create the Data Source Name (DSN) string
-	dsn := fmt.Sprintf("%s:%s@tcp(%s:%s)/%s", username, password, host, port, dbName)
+	constr := fmt.Sprintf(
+		"%s:%s@tcp(%s)/%s?allowNativePasswords=true&tls=true",
+		username,
+		password,
+		dburl,
+		dbtable,
+	)
 
-	// Open a connection to the MySQL database
-	db, err := sql.Open("mysql", dsn)
+	db, err := sql.Open("mysql", constr)
 	if err != nil {
-		log.Fatalf("Error opening database connection: %v", err)
+		log.Fatal(err)
 	}
 	defer db.Close()
-
-	// Ping the database to check if the connection is successful
-	err = db.Ping()
-	if err != nil {
-		log.Fatalf("Error connecting to database: %v", err)
-	}
-
-	fmt.Println("Connected to MySQL database!")
 
 	// Get the 'id' value from the request
 	id := r.FormValue("id")
@@ -152,35 +148,25 @@ func editHandler(w http.ResponseWriter, r *http.Request) {
 
 // DELETE BUTTON CODE
 func deleteHandler(w http.ResponseWriter, r *http.Request) {
-	username := "admin"
-	password := "admin"
-	host := "127.0.0.1"
-	port := "3306"
-	dbName := "pvp_naudotojams"
+	username := os.Getenv("DBUSER")
+	password := os.Getenv("DBPASS")
+	dburl := os.Getenv("DBURL")
+	dbtable := os.Getenv("DBTABLE")
 
-	// Create the Data Source Name (DSN) string
-	dsn := fmt.Sprintf("%s:%s@tcp(%s:%s)/%s", username, password, host, port, dbName)
+	constr := fmt.Sprintf(
+		"%s:%s@tcp(%s)/%s?allowNativePasswords=true&tls=true",
+		username,
+		password,
+		dburl,
+		dbtable,
+	)
 
-	// Open a connection to the MySQL database
-	db, err := sql.Open("mysql", dsn)
+	db, err := sql.Open("mysql", constr)
 	if err != nil {
-		log.Fatalf("Error opening database connection: %v", err)
+		log.Fatal(err)
 	}
 	defer db.Close()
 
-	// Ping the database to check if the connection is successful
-	err = db.Ping()
-	if err != nil {
-		log.Fatalf("Error connecting to database: %v", err)
-	}
-
-	fmt.Println("Connected to MySQL database!")
-
-	// Ping the database to check if the connection is successful
-	err = db.Ping()
-	if err != nil {
-		log.Fatalf("Error connecting to database: %v", err)
-	}
 	// Gauti įrašo ID, kurį reikia ištrinti
 	id := r.FormValue("id")
 
@@ -199,35 +185,24 @@ func deleteHandler(w http.ResponseWriter, r *http.Request) {
 
 // AFTER LOGIN PAGE CODE "/pagrininis"
 func h1(w http.ResponseWriter, r *http.Request) {
-	username := "admin"
-	password := "admin"
-	host := "127.0.0.1"
-	port := "3306"
-	dbName := "pvp_naudotojams"
+	username := os.Getenv("DBUSER")
+	password := os.Getenv("DBPASS")
+	dburl := os.Getenv("DBURL")
+	dbtable := os.Getenv("DBTABLE")
 
-	// Create the Data Source Name (DSN) string
-	dsn := fmt.Sprintf("%s:%s@tcp(%s:%s)/%s", username, password, host, port, dbName)
+	constr := fmt.Sprintf(
+		"%s:%s@tcp(%s)/%s?allowNativePasswords=true&tls=true",
+		username,
+		password,
+		dburl,
+		dbtable,
+	)
 
-	// Open a connection to the MySQL database
-	db, err := sql.Open("mysql", dsn)
+	db, err := sql.Open("mysql", constr)
 	if err != nil {
-		log.Fatalf("Error opening database connection: %v", err)
+		log.Fatal(err)
 	}
 	defer db.Close()
-
-	// Ping the database to check if the connection is successful
-	err = db.Ping()
-	if err != nil {
-		log.Fatalf("Error connecting to database: %v", err)
-	}
-
-	fmt.Println("Connected to MySQL database!")
-
-	// Ping the database to check if the connection is successful
-	err = db.Ping()
-	if err != nil {
-		log.Fatalf("Error connecting to database: %v", err)
-	}
 
 	//productQuery := `
 	//SELECT produktas.* , parduotuve.*
@@ -353,35 +328,24 @@ func h2(w http.ResponseWriter, r *http.Request) {
 
 // INSER CODE SITA NUSIKOPINTI IR PERKELTI REIKES KAI !!!!!!
 func insertHandler(w http.ResponseWriter, r *http.Request) {
-	username := "admin"
-	password := "admin"
-	host := "127.0.0.1"
-	port := "3306"
-	dbName := "pvp_naudotojams"
+	username := os.Getenv("DBUSER")
+	password := os.Getenv("DBPASS")
+	dburl := os.Getenv("DBURL")
+	dbtable := os.Getenv("DBTABLE")
 
-	// Create the Data Source Name (DSN) string
-	dsn := fmt.Sprintf("%s:%s@tcp(%s:%s)/%s", username, password, host, port, dbName)
+	constr := fmt.Sprintf(
+		"%s:%s@tcp(%s)/%s?allowNativePasswords=true&tls=true",
+		username,
+		password,
+		dburl,
+		dbtable,
+	)
 
-	// Open a connection to the MySQL database
-	db, err := sql.Open("mysql", dsn)
+	db, err := sql.Open("mysql", constr)
 	if err != nil {
-		log.Fatalf("Error opening database connection: %v", err)
+		log.Fatal(err)
 	}
 	defer db.Close()
-
-	// Ping the database to check if the connection is successful
-	err = db.Ping()
-	if err != nil {
-		log.Fatalf("Error connecting to database: %v", err)
-	}
-
-	fmt.Println("Connected to MySQL database!")
-
-	// Ping the database to check if the connection is successful
-	err = db.Ping()
-	if err != nil {
-		log.Fatalf("Error connecting to database: %v", err)
-	}
 
 	// Čia gauname duomenis iš formos
 	gamintojasPavadinimas := r.FormValue("gamintojas_pavadinimas")
@@ -446,7 +410,7 @@ func insertHandler(w http.ResponseWriter, r *http.Request) {
 			}
 		}
 		query = `
-                INSERT INTO parduotuve (pavadinimas, adresas)
+                INSERT INTO parduotuve (pavadinimas, nuotrauka)
                 VALUES (?, ?)
             `
 		_, err = db.Exec(query, parduotuvePavadinimas, parduotuveAdresas)
@@ -458,8 +422,8 @@ func insertHandler(w http.ResponseWriter, r *http.Request) {
 		query2 := `
                  SELECT id 
                 FROM parduotuve 
-                WHERE pavadinimas = ? AND adresas = ?`
-		row2 := db.QueryRow(query2, parduotuvePavadinimas, parduotuveAdresas)
+                WHERE pavadinimas = ?`
+		row2 := db.QueryRow(query2, parduotuvePavadinimas)
 		var id_padruotuve int
 		err = row2.Scan(&id_padruotuve)
 		if err != nil {
@@ -490,27 +454,24 @@ func insertHandler(w http.ResponseWriter, r *http.Request) {
 
 // SEARCH CODE
 func searchHandler(w http.ResponseWriter, r *http.Request) {
-	username := "admin"
-	password := "admin"
-	host := "127.0.0.1"
-	port := "3306"
-	dbName := "pvp_naudotojams"
+	username := os.Getenv("DBUSER")
+	password := os.Getenv("DBPASS")
+	dburl := os.Getenv("DBURL")
+	dbtable := os.Getenv("DBTABLE")
 
-	// Sukurkite duomenų šaltinio vardą (DSN) eilutę
-	dsn := fmt.Sprintf("%s:%s@tcp(%s:%s)/%s", username, password, host, port, dbName)
+	constr := fmt.Sprintf(
+		"%s:%s@tcp(%s)/%s?allowNativePasswords=true&tls=true",
+		username,
+		password,
+		dburl,
+		dbtable,
+	)
 
-	// Atidarome ryšį su MySQL duomenų baze
-	db, err := sql.Open("mysql", dsn)
+	db, err := sql.Open("mysql", constr)
 	if err != nil {
-		log.Fatalf("Klaida atidarant duomenų bazės ryšį: %v", err)
+		log.Fatal(err)
 	}
 	defer db.Close()
-
-	// Patikriname duomenų bazės ryšį
-	err = db.Ping()
-	if err != nil {
-		log.Fatalf("Klaida jungiantis prie duomenų bazės: %v", err)
-	}
 
 	// Gauname įvestas reikšmes iš formos
 	produkto_pavadinimas := r.FormValue("produkto_pavadinimas")
@@ -607,34 +568,30 @@ func homeHandler(w http.ResponseWriter, r *http.Request) {
 }
 
 // EDIT PAGE WITH UPDATE DATA
+// neveikia nes nera parduotuve id ir gamintojas id reiksmiu
 func updateHandler(w http.ResponseWriter, r *http.Request) {
-	username := "admin"
-	password := "admin"
-	host := "127.0.0.1"
-	port := "3306"
-	dbName := "pvp_naudotojams"
+	username := os.Getenv("DBUSER")
+	password := os.Getenv("DBPASS")
+	dburl := os.Getenv("DBURL")
+	dbtable := os.Getenv("DBTABLE")
 
-	// Create the Data Source Name (DSN) string
-	dsn := fmt.Sprintf("%s:%s@tcp(%s:%s)/%s", username, password, host, port, dbName)
+	constr := fmt.Sprintf(
+		"%s:%s@tcp(%s)/%s?allowNativePasswords=true&tls=true",
+		username,
+		password,
+		dburl,
+		dbtable,
+	)
 
-	// Open a connection to the MySQL database
-	db, err := sql.Open("mysql", dsn)
+	db, err := sql.Open("mysql", constr)
 	if err != nil {
-		log.Fatalf("Error opening database connection: %v", err)
+		log.Fatal(err)
 	}
 	defer db.Close()
 
-	// Ping the database to check if the connection is successful
-	err = db.Ping()
-	if err != nil {
-		log.Fatalf("Error connecting to database: %v", err)
-	}
-
-	fmt.Println("Connected to MySQL database!")
-
 	id := r.FormValue("id")
 	// Gauname formos laukų duomenis
-	//produktoID := r.FormValue("produkto_id")
+	// produktoID := r.FormValue("produkto_id")
 	produktoBruksninisKodas := r.FormValue("produktas_bruksninis_kodas")
 	produktoPavadinimas := r.FormValue("produktas_pavadinimas")
 	produktoKaina := r.FormValue("produktas_kaina")
@@ -649,20 +606,6 @@ func updateHandler(w http.ResponseWriter, r *http.Request) {
 	parduotuvesID := r.FormValue("parduotuves_id")
 	parduotuvesPavadinimas := r.FormValue("parduotuves_pavadinimas")
 	parduotuvesAdresas := r.FormValue("parduotuves_adresas")
-
-	// Patikriname, ar brūkšninis kodas jau egzistuoja
-	queryCheck := `
-	SELECT COUNT(*)
-	FROM produktas
-	WHERE bruksninis_kodas = ?
-	`
-
-	var count int
-	err = db.QueryRow(queryCheck, produktoBruksninisKodas).Scan(&count)
-	if err != nil {
-		http.Error(w, err.Error(), http.StatusInternalServerError)
-		return
-	}
 
 	// Atnaujiname produktą
 	produktoQuery := `
@@ -730,34 +673,29 @@ func updateHandler(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 
-	redirectURL := fmt.Sprintf("/pagrindinis")
-	http.Redirect(w, r, redirectURL, http.StatusFound)
+	http.Redirect(w, r, "/pagrindinis", http.StatusSeeOther)
 }
 
 // BAR CODE SEARCH IN INSERT PAGE
 func barCodeHandler(w http.ResponseWriter, r *http.Request) {
-	username := "admin"
-	password := "admin"
-	host := "127.0.0.1"
-	port := "3306"
-	dbName := "pvp_naudotojams"
+	username := os.Getenv("DBUSER")
+	password := os.Getenv("DBPASS")
+	dburl := os.Getenv("DBURL")
+	dbtable := os.Getenv("DBTABLE")
 
-	// Sukurkite duomenų šaltinio vardą (DSN) eilutę
-	dsn := fmt.Sprintf("%s:%s@tcp(%s:%s)/%s", username, password, host, port, dbName)
+	constr := fmt.Sprintf(
+		"%s:%s@tcp(%s)/%s?allowNativePasswords=true&tls=true",
+		username,
+		password,
+		dburl,
+		dbtable,
+	)
 
-	// Atidarome ryšį su MySQL duomenų baze
-	db, err := sql.Open("mysql", dsn)
+	db, err := sql.Open("mysql", constr)
 	if err != nil {
-		log.Fatalf("Klaida atidarant duomenų bazės ryšį: %v", err)
+		log.Fatal(err)
 	}
 	defer db.Close()
-
-	// Patikriname duomenų bazės ryšį
-	err = db.Ping()
-	if err != nil {
-		log.Fatalf("Klaida jungiantis prie duomenų bazės: %v", err)
-	}
-
 	// Gauname įvestas reikšmes iš formos
 	barCode := r.FormValue("barCode")
 	//produkto_pavadinimas := r.FormValue("barCode")

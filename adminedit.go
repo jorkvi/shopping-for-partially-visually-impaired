@@ -6,6 +6,7 @@ import (
 	"html/template"
 	"log"
 	"net/http"
+	"os"
 
 	_ "github.com/go-sql-driver/mysql"
 )
@@ -84,27 +85,24 @@ func handlerFunc(w http.ResponseWriter, r *http.Request) {
 	}
 }
 func admindata(w http.ResponseWriter, r *http.Request) {
-	username := "root"
-	password := ""
-	host := "127.0.0.1"
-	port := "3306"
-	dbName := "pvp_admin"
+	username := os.Getenv("DBUSER")
+	password := os.Getenv("DBPASS")
+	dburl := os.Getenv("DBURL")
+	dbtable := os.Getenv("DBTABLE")
 
-	// Create the Data Source Name (DSN) string
-	dsn := fmt.Sprintf("%s:%s@tcp(%s:%s)/%s", username, password, host, port, dbName)
+	constr := fmt.Sprintf(
+		"%s:%s@tcp(%s)/%s?allowNativePasswords=true&tls=true",
+		username,
+		password,
+		dburl,
+		dbtable,
+	)
 
-	// Open a connection to the MySQL database
-	db, err := sql.Open("mysql", dsn)
+	db, err := sql.Open("mysql", constr)
 	if err != nil {
-		log.Fatalf("Error opening database connection: %v", err)
+		log.Fatal(err)
 	}
 	defer db.Close()
-
-	// Ping the database to check if the connection is successful
-	err = db.Ping()
-	if err != nil {
-		log.Fatalf("Error connecting to database: %v", err)
-	}
 
 	r.ParseForm()
 	id := r.FormValue("id")

@@ -8,6 +8,7 @@ import (
 	"html/template"
 	"log"
 	"net/http"
+	"os"
 
 	_ "github.com/go-sql-driver/mysql"
 	"github.com/gorilla/sessions"
@@ -147,38 +148,27 @@ func renderLoginPage(w http.ResponseWriter, pageVariables PageVariables) {
 	}
 }
 func getUserByEmail(email string) *User {
-	username := "root"
-	password := ""
-	host := "127.0.0.1"
-	port := "3306"
-	dbName := "pvp_admin"
+	username := os.Getenv("DBUSER")
+	password := os.Getenv("DBPASS")
+	dburl := os.Getenv("DBURL")
+	dbtable := os.Getenv("DBTABLE1")
 
-	// Create the Data Source Name (DSN) string
-	dsn := fmt.Sprintf("%s:%s@tcp(%s:%s)/%s", username, password, host, port, dbName)
+	constr := fmt.Sprintf(
+		"%s:%s@tcp(%s)/%s?allowNativePasswords=true&tls=true",
+		username,
+		password,
+		dburl,
+		dbtable,
+	)
 
-	// Open a connection to the MySQL database
-	db, err := sql.Open("mysql", dsn)
+	db, err := sql.Open("mysql", constr)
 	if err != nil {
-		log.Fatalf("Error opening database connection: %v", err)
+		log.Fatal(err)
 	}
 	defer db.Close()
 
-	// Ping the database to check if the connection is successful
-	err = db.Ping()
-	if err != nil {
-		log.Fatalf("Error connecting to database: %v", err)
-	}
-
-	fmt.Println("Connected to MySQL database!")
-
-	// Ping the database to check if the connection is successful
-	err = db.Ping()
-	if err != nil {
-		log.Fatalf("Error connecting to database: %v", err)
-	}
-
 	var user User
-	rows, err := db.Query("SELECT * FROM paskyra WHERE elpastas = ?", email)
+	rows, err := db.Query("SELECT * FROM paskyra WHERE epastas = ?", email)
 	if err != nil {
 		panic(err.Error())
 	}
@@ -196,7 +186,6 @@ func getUserByEmail(email string) *User {
 	}
 
 	return &user
-
 }
 
 func Login(w http.ResponseWriter, r *http.Request) {
