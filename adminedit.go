@@ -157,3 +157,28 @@ func admindata(w http.ResponseWriter, r *http.Request) {
 
 	http.Redirect(w, r, "/admin", http.StatusSeeOther)
 }
+
+func clearSession(w http.ResponseWriter, r *http.Request) {
+	session, err := store.Get(r, "session-name")
+	if err != nil {
+		http.Error(w, err.Error(), http.StatusInternalServerError)
+		return
+	}
+
+	// Ištriname sesijos kintamąjį
+	delete(session.Values, "elpastas")
+	delete(session.Values, "slaptazodis")
+	delete(session.Values, "vardas")
+	delete(session.Values, "LoggedIn")
+
+	// Išsaugome pakeitimus sesijoje
+	err = session.Save(r, w)
+	if err != nil {
+		http.Error(w, err.Error(), http.StatusInternalServerError)
+		return
+	}
+
+	// Atsakome klientui, kad sesijos kintamasis buvo ištrintas
+	//w.Write([]byte("Sesijos kintamasis buvo ištrintas"))
+	http.Redirect(w, r, "/homePage", http.StatusSeeOther)
+}
