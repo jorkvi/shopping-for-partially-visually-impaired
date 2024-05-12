@@ -594,58 +594,96 @@ body {
     <!-- Įvestis į gamintoją -->
     <div id="staciakamp" class="col-lg-10">
         <form action="/edit1" method="post" onsubmit="return validateForm()">
-            <!-- Įvestis į gamintoją -->
-            <div id="ivestis" class="container-fluid" style="background-color: gray;">
+<!-- Įvestis į gamintoją -->
+<br>
+<p id="message" ></p>
+<div id="ivestis" class="container-fluid" style="background-color: gray;">
+        <div class="row">
+            <div class="container mt-3">
+                <h3>Gamintojas</h3>
                 <div class="row">
-                    <div class="container mt-3">
-                        <h3>Gamintojas</h3>
-                        <div class="input-group input-group-lg mb-3">
-                            <input type="text" placeholder="Pavadinimas" class="form-control" style="font-size: 15px;" name="gamintojas_pavadinimas" value="{{.Gamintojas_pav}}"  required>
-                            <input type="text" placeholder="Kilmės šalis" class="form-control" style="font-size: 15px;" name="gamintojas_kilmes_salis" value="{{.Gamintojas_salis}}" required>
-                        </div>
+                    <div class="col-md-6">
+                        <label for="gamintojas_pavadinimas">Pavadinimas</label>
+                        <input type="text" placeholder="Pavadinimas" class="form-control" style="font-size: 15px;" name="gamintojas_pavadinimas" value="{{.Gamintojas_pav}}" required>
+                    </div>
+                    <div class="col-md-6">
+                        <label for="gamintojas_kilmes_salis">Kilmės šalis</label>
+                        <input type="text" placeholder="Kilmės šalis" class="form-control" style="font-size: 3015pxpx;" name="gamintojas_kilmes_salis" value="{{.Gamintojas_salis}}" required>
                     </div>
                 </div>
             </div>
-      
-            <!-- Įvestis į parduotuvę -->
-            <div id="ivestis" class="container-fluid" style="background-color: gray;">
+        </div>
+    </div>
+
+    <!-- Įvestis į parduotuvę -->
+    <div id="ivestis" class="container-fluid" style="background-color: gray;">
+        <div class="row">
+            <div class="container mt-3">
+                <h3>Parduotuvė</h3>
                 <div class="row">
-                    <div class="container mt-3">
-                        <h3>Parduotuvė</h3>
-                        <div class="input-group input-group-lg mb-3">
-                            <input type="text" placeholder="Pavadinimas" class="form-control" style="font-size: 15px;" name="parduotuve_pavadinimas" value="{{.Parduotuve_pav}}" required>
-                            <input type="text" placeholder="Adresas" class="form-control" style="font-size: 15px;" name="parduotuve_adresas" value="{{.Parduotuve_adresas}}" required>
-                        </div>
+                    <div class="col-md-6">
+                        <label for="parduotuve_pavadinimas">Pavadinimas</label>
+                        <input type="text" placeholder="Pavadinimas" class="form-control" style="font-size: 15px;" name="parduotuve_pavadinimas" value="{{.Parduotuve_pav}}" required>
+                    </div>
+                    <div class="col-md-6">
+                        <label for="parduotuve_adresas">Adresas</label>
+                        <input type="text" placeholder="Adresas" class="form-control" style="font-size: 15px;" name="parduotuve_adresas" value="{{.Parduotuve_adresas}}" required>
                     </div>
                 </div>
             </div>
-        
-            <!-- Įvestis į produktą -->
-            <div id="ivestis" class="container-fluid" style="background-color: gray;">
+        </div>
+    </div>
+
+    <!-- Įvestis į produktą -->
+    <div id="ivestis" class="container-fluid" style="background-color: gray;">
+        <div class="row">
+            <div class="container mt-3">
+                <h3 style="font-size: 24px;">Produktas</h3>
                 <div class="row">
-                    <div class="container mt-3">
-                        <h3 style="font-size: 24px;">Produktas</h3>
-                    
-                        <div class="input-group input-group-lg mb-3">
-                          <input type="number" placeholder="Bruksninis kodas" class="form-control" style="font-size: 15px;" name="produktas_bruksninis_kodas" value="{{.Kodas}}" required>
-                          <input type="text" placeholder="Pavadinimas" class="form-control" style="font-size: 15px;" name="produktas_pavadinimas" value="{{.Pavadinimas}}" required>
-                          <input type="number" step="0.01" placeholder="Kaina" class="form-control" style="font-size: 15px;" name="produktas_kaina" value="{{.Kaina}}" required>
-                          <input type="text" placeholder="Kategorija" class="form-control" style="font-size: 15px;" name="produktas_kategorija" value="{{.Kategorija}}" required>
-                        </div>
-                        <div class="input-group input-group-lg mb-3">
-                            <label for="pagaminimo_data" style="font-size: 15px;">Pagaminimo data</label>
-                            <input type="date" id="pagaminimo_data" class="form-control" style="font-size: 15px;" name="produktas_pagaminimo_data" value="{{.Pagaminimo_data}}"   required>
-                            <label for="galiojimo_pabaigos_data" style="font-size: 15px;">Galiojimo pabaigos data</label>
-                            <input type="date"  id="galiojimo_pabaigos_data" class="form-control" style="font-size: 15px;" name="produktas_galiojimo_pabaigos_data" value="{{.Galiojimo_pabaiga}}" required>
-                        </div>
-                        <div class="input-group input-group-lg mb-3">
-                            <input type="text" placeholder="Sudėtis" class="form-control" style="font-size: 15px;" name="produktas_sudetis" value="{{.Sudetis}}" required>
-                            <input type="text" placeholder="Maistingumas" class="form-control" style="font-size: 15px;" name="produktas_maistingumas" value="{{.Maistingumas}}" required>
-                        </div>
+                    <div class="col-md-6">
+                        <label for="produktas_bruksninis_kodas">Bruksninis kodas</label>
+                        <input type="number" placeholder="Bruksninis kodas" class="form-control" style="font-size: 15px;" name="produktas_bruksninis_kodas" value="{{.Kodas}}" required>
+                    </div>
+                    <div class="col-md-6">
+                        <label for="produktas_pavadinimas">Pavadinimas</label>
+                        <input type="text" placeholder="Pavadinimas" class="form-control" style="font-size: 15px;" name="produktas_pavadinimas" value="{{.Pavadinimas}}" required>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-6">
+                        <label for="produktas_kaina">Kaina</label>
+                        <input type="number" step="0.01" placeholder="Kaina" class="form-control" style="font-size: 15px;" name="produktas_kaina"  value="{{.Kaina}}"required>
+                    </div>
+                    <div class="col-md-6">
+                        <label for="produktas_kategorija">Kategorija</label>
+                        <input type="text" placeholder="Kategorija" class="form-control" style="font-size: 15px;" name="produktas_kategorija" value="{{.Kategorija}}" required>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-6">
+                        <label for="pagaminimo_data">Pagaminimo data</label>
+                        <input type="date" id="pagaminimo_data" class="form-control" style="font-size: 15px;" name="produktas_pagaminimo_data" value="{{.Pagaminimo_data}}" required>
+                    </div>
+                    <div class="col-md-6">
+                        <label for="galiojimo_pabaigos_data">Galiojimo pabaigos data</label>
+                        <input type="date" id="galiojimo_pabaigos_data" class="form-control" style="font-size: 15px;" name="produktas_galiojimo_pabaigos_data" value="{{.Galiojimo_pabaiga}}" required>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-6">
+                        <label for="produktas_sudetis">Sudėtis</label>
+                        <input type="text" placeholder="Sudėtis" class="form-control" style="font-size: 15px;" name="produktas_sudetis" value="{{.Sudetis}}" required>
+                    </div>
+                    <div class="col-md-6">
+                        <label for="produktas_maistingumas">Maistingumas</label>
+                        <input type="text" placeholder="Maistingumas" class="form-control" style="font-size: 15px;" name="produktas_maistingumas" value="{{.Maistingumas}}" required>
                     </div>
                 </div>
             </div>
-            <br>
+        </div>
+    </div>
+
+    <br>
             <button name="id" value= "{{.ID}}" type="submit" class="btn btn-primary" style="font-size: 25px;">
                 Išsaugoti
             </button>

@@ -568,7 +568,6 @@ func homeHandler(w http.ResponseWriter, r *http.Request) {
 }
 
 // EDIT PAGE WITH UPDATE DATA
-// neveikia nes nera parduotuve id ir gamintojas id reiksmiu
 func updateHandler(w http.ResponseWriter, r *http.Request) {
 	username := os.Getenv("DBUSER")
 	password := os.Getenv("DBPASS")
@@ -600,13 +599,27 @@ func updateHandler(w http.ResponseWriter, r *http.Request) {
 	produktoMaistingumas := r.FormValue("produktas_maistingumas")
 	produktoPagaminimoData := r.FormValue("produktas_pagaminimo_data")
 	produktoGaliojimoPabaigosData := r.FormValue("produktas_galiojimo_pabaigos_data")
-	gamintojasID := r.FormValue("gamintojo_id")
-	gamintojasPavadinimas := r.FormValue("gamintojo_pavadinimas")
-	gamintojasKilmesSalis := r.FormValue("gamintojo_kilmes_salis")
-	parduotuvesID := r.FormValue("parduotuves_id")
-	parduotuvesPavadinimas := r.FormValue("parduotuves_pavadinimas")
-	parduotuvesAdresas := r.FormValue("parduotuves_adresas")
+	//gamintojasID := r.FormValue("gamintojo_id")
+	gamintojasPavadinimas := r.FormValue("gamintojas_pavadinimas")
+	gamintojasKilmesSalis := r.FormValue("gamintojas_kilmes_salis")
+	//parduotuvesID := r.FormValue("parduotuves_id")
+	parduotuvesPavadinimas := r.FormValue("parduotuve_pavadinimas")
+	parduotuvesAdresas := r.FormValue("parduotuve_adresas")
 
+	idQuery := `
+	SELECT fk_parduotuve_id, fk_gamintojas_id FROM produktas
+	WHERE id = ? 
+	`
+	row2 := db.QueryRow(idQuery, id)
+	var id_padruotuve int
+	var id_gamintojas int
+	err = row2.Scan(&id_padruotuve, &id_gamintojas)
+	if err != nil {
+		if err != sql.ErrNoRows {
+			http.Error(w, err.Error(), http.StatusInternalServerError)
+			return
+		}
+	}
 	// Atnaujiname produktą
 	produktoQuery := `
 		UPDATE produktas 
@@ -637,6 +650,11 @@ func updateHandler(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 
+	fmt.Println("id", id_padruotuve)
+	fmt.Println("id", id_gamintojas)
+	fmt.Println("id", gamintojasPavadinimas)
+	fmt.Println("id", gamintojasKilmesSalis)
+	fmt.Println("id", parduotuvesPavadinimas)
 	// Atnaujiname gamintoją
 	gamintojoQuery := `
 		UPDATE gamintojas 
@@ -649,7 +667,7 @@ func updateHandler(w http.ResponseWriter, r *http.Request) {
 	_, err = db.Exec(gamintojoQuery,
 		gamintojasPavadinimas,
 		gamintojasKilmesSalis,
-		gamintojasID)
+		id_gamintojas)
 	if err != nil {
 		http.Error(w, err.Error(), http.StatusInternalServerError)
 		return
@@ -660,14 +678,14 @@ func updateHandler(w http.ResponseWriter, r *http.Request) {
 		UPDATE parduotuve 
 		SET 
 			pavadinimas = ?, 
-			adresas = ?
+			nuotrauka = ?
 		WHERE id = ?
 	`
 
 	_, err = db.Exec(parduotuvesQuery,
 		parduotuvesPavadinimas,
 		parduotuvesAdresas,
-		parduotuvesID)
+		id_padruotuve)
 	if err != nil {
 		http.Error(w, err.Error(), http.StatusInternalServerError)
 		return
