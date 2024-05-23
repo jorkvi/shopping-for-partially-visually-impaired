@@ -392,8 +392,8 @@ body {
 </head>
 <body>
     <div class="w3-sidebar w3-bar-block w3-border-right w3-animate-left" style="display:none" id="mySidebar">
-        <button onclick="w3_close()" class="w3-bar-item w3-button w3-large">Close &times;</button>
-        <a href="#" class="w3-bar-item w3-button" onclick="window.location.href='http://localhost:8080/homePage';">HomePage</a>
+        <button onclick="w3_close()" class="w3-bar-item w3-button w3-large">Uždaryti &times;</button>
+        <a href="#" class="w3-bar-item w3-button" onclick="window.location.href='http://localhost:8080/homePage';">Pagrindinis puslapis</a>
         <a href="#" class="w3-bar-item w3-button" onclick="window.location.href='http://localhost:8080/pagrindinis';">Atgal</a>
       </div>
 <div class= "container-fluid" >
@@ -409,7 +409,7 @@ body {
         <img  src="{{.Ikona}}" style=" width: 200px; height: 200px" alt="Ikona"> 
        
         <div id="bruksniai" style="height: 52px; width: 56px;" class=" w3-xlarge" onclick="w3_open()" >
-            <img src="{{.Bruksniai}}" style=" width: 55px; height: 55px" alt="Bruksniai">
+            <img src="{{.Bruksniai}}" title="Atidaryti svetainės puslapių meniu!" style=" width: 55px; height: 55px" alt="Bruksniai">
         </div>
         </div> <!--VIRŠUTINIS KAIRYSIS STAČIAKAMPIS PABAIGA-->
         <script>
@@ -444,31 +444,16 @@ body {
                 </div>
                 <div class="col-md-1" id="paskyra"  >
                     
-                    <img src="{{.Avatar}}" style=" width: 30px; height: 30px; float: right;  " alt="Avatar" onclick="window.location.href='http://localhost:8080/admin';">
+                    <img src="{{.Avatar}}" title="Redaguoti naudotojo paskyros duomenis!" style=" width: 30px; height: 30px; float: right;  " alt="Avatar" onclick="window.location.href='http://localhost:8080/admin';">
 
-                    <img src="{{.Bruksniai}}" style=" width: 25px; height: 25px; float: left; margin-left: 5px; margin-top: 1px;" alt="Avatar" onclick="window.location.href='http://localhost:8080/logout';">
+                    <img src="{{.Bruksniai}}"  title="Atsijungti" style=" width: 25px; height: 25px; float: left; margin-left: 5px; margin-top: 1px;" alt="Avatar" onclick="window.location.href='http://localhost:8080/homePage';">
                  
             </div>         
             </div>
                     
                 <div class="row" style="height: 60px;">
                 
-                <div style="margin-left: 300px; " id="skyriukai" class="col-lg-5" > <!--  Tekstas "Produktai"-->
-
-                    <h5 style="text-align: center; padding: 20px ; "> Produktai </h5>
-
-                    
-                </div>
-                <div id="skyriukai" style="text-align: center;" class="col-lg-2" > <!--  Tekstas "Kodas"-->
-                    <h5 style=" padding-top: 20px ;"> Kodas </h5>
-
-                    
-                </div>
-                <div style="text-align: center; padding: 19px;  " id="skyriukai" class="col-lg-5" > <!--  Tekstas "Būsimi projektai"-->
-                    <h5> Būsimi projektai  </h5>
-
-                    
-                </div>
+                
                 </div>
             
 

@@ -363,6 +363,35 @@ body {
         max-height: 90px;
 
     }
+    .tooltip {
+            position: relative;
+            display: inline-block;
+            cursor: pointer;
+        }
+
+        .tooltip .tooltiptext {
+            visibility: hidden;
+            width: 120px;
+            background-color: #555;
+            color: #fff;
+            text-align: center;
+            border-radius: 6px;
+            padding: 5px;
+            position: absolute;
+            z-index: 1;
+            bottom: 125%; /* Position above the button */
+            left: 50%;
+            margin-left: -60px;
+            opacity: 0;
+            transition: opacity 0.3s;
+        }
+
+        .tooltip:hover .tooltiptext {
+            visibility: visible;
+            opacity: 1;
+        }
+
+
     </style>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -375,8 +404,8 @@ body {
 </head>
 <body>
   <div class="w3-sidebar w3-bar-block w3-border-right w3-animate-left" style="display:none" id="mySidebar">
-    <button onclick="w3_close()" class="w3-bar-item w3-button w3-large">Close &times;</button>
-    <a href="#" class="w3-bar-item w3-button" onclick="window.location.href='http://localhost:8080/homePage';">HomePage</a>
+    <button onclick="w3_close()" class="w3-bar-item w3-button w3-large">Uždaryti &times;</button>
+    <a href="#" class="w3-bar-item w3-button" onclick="window.location.href='http://localhost:8080/homePage';">Pagrindinis puslapis</a>
     <a href="#" class="w3-bar-item w3-button" onclick="window.location.href='http://localhost:8080/pagrindinis';">Prekės</a>
   </div>
 
@@ -393,7 +422,7 @@ body {
         
         <img  src="{{.Ikona}}" style=" width: 200px; height: 200px" alt="Ikona"> 
        
-       <div id="bruksniai" style="height: 52px; width: 56px;" onclick="w3_open()" >
+       <div id="bruksniai" style="height: 52px; width: 56px;" title="Atidaryti svetainės puslapių juostą!" onclick="w3_open()" >
         <img src="{{.Bruksniai}}" style=" width: 55px; height: 55px" alt="Bruksniai">
     </div>
     </div> <!--VIRŠUTINIS KAIRYSIS STAČIAKAMPIS PABAIGA-->
@@ -425,9 +454,9 @@ body {
                 
                 <div class="col-md-1" id="paskyra"  >
                     
-                  <img src="{{.Avatar}}" style=" width: 30px; height: 30px; float: right;  " alt="Avatar" onclick="window.location.href='http://localhost:8080/admin';">
+                  <img src="{{.Avatar}}" style=" width: 30px; height: 30px; float: right;  " title="Redaguoti administratoriaus paskyros duomenis!" alt="Avatar" onclick="window.location.href='http://localhost:8080/admin';">
 
-                  <img src="{{.Bruksniai}}" style=" width: 25px; height: 25px; float: left; margin-left: 5px; margin-top: 1px;" alt="Avatar" onclick="window.location.href='http://localhost:8080/logout';">
+                  <img src="{{.Bruksniai}}" title="Atsijungti!" style=" width: 25px; height: 25px; float: left; margin-left: 5px; margin-top: 1px;" alt="Avatar" onclick="window.location.href='http://localhost:8080/homePage';">
                
           </div>   
                    
@@ -458,22 +487,7 @@ body {
                   </script>
 
 <div class="row" style="height: 60px;">
-  <div style="margin-left: 300px; " id="skyriukai" class="col-md-5" > <!--  Tekstas "Produktai"-->
-
-      <h5 style="text-align: center; padding: 20px; "> Produktai </h5>
-
-      
-  </div>
-  <div id="skyriukai" style=" text-align: center;" class="col-md-2" > <!--  Tekstas "Kodas"-->
-      <h5 style=" padding-top: 20px ;"> Kodas </h5>
-
-      
-  </div >
-  <div style="text-align: center; padding: 19px; " id="skyriukai" class="col-md-5" > <!--  Tekstas "Būsimi projektai"-->
-      <h5> Būsimi projektai  </h5>
-
-      
-  </div>
+  
 </div>
             </div>
 
@@ -503,20 +517,20 @@ body {
                 <div class="col-lg-9">
                     <div id="poskyriai"  class= "container-fluid" > 
                         <div  class="row">
-                        <div style="margin-left: 50px;" id="juostos-efektas" class="col-lg-3"> <!--Produkto paieška | ieškoti produkto-->
+                        <div style="margin-left: 50px;" id="juostos-efektas" class="col-lg-3" title="Įrašykite produkto pavadinimą!"> <!--Produkto paieška | ieškoti produkto-->
                             <p> Produkto paieška </p>           
                             <input type="text" placeholder="Pavadinimas" name="produkto_pavadinimas"  style="font-size: 15px; border: none; background-color: transparent;"><br>
                         </div>
-                        <div id="juostos-efektas" class="col-lg-3"> <!--Produkto kodas | kodas-->
+                        <div id="juostos-efektas" class="col-lg-3" title="Įrašykite norimo produkto bar kodą!"> <!--Produkto kodas | kodas-->
                             <p> Produkto kodas </p>
                             <input type="text" placeholder="Kodas"  name="produkto_kodas" style="font-size: 15px; border: none; background-color: transparent;" ><br>
                         </div>
-                        <div id="juostos-efektas" class="col-lg-3"> <!--Parduotuvė | Pavadinimas-->
+                        <div id="juostos-efektas" class="col-lg-3" title="Įrašykite norimo produkto parduotuvės pavadinimą!"> <!--Parduotuvė | Pavadinimas-->
                             <p> Parduotuvė </p>
                             <input type="text" placeholder="Pavadinimas"  name="parduotuves_pavadinimas" style="font-size: 15px;  border: none; background-color: transparent;" ><br>
                         </div>
                             <div class="col-lg-2">
-                                <button type="submit" style="width: 45px; height: 45px; padding: 5px; margin: 20px 30px 20px 0px; float: right; background: url('{{.Lupa}}') no-repeat center; background-size: contain; border: none;" alt="Labas"></button>
+                                <button type="submit" style="width: 45px; height: 45px; padding: 5px; margin: 20px 30px 20px 0px; float: right; background: url('{{.Lupa}}') no-repeat center; background-size: contain; border: none;" alt="Labas" title="Ieškoti produktų pagal nurodytą kodą, pavadinimą ar parduotuvę!" > </button>
                             </form>
                               </div>
                         </div>
@@ -580,9 +594,10 @@ body {
                 <thead class="table-dark " >
                   <tr style="height: 30px; overflow-y: scroll; ">
                     <th  style="font-size: large;  font-weight: 900; vertical-align: middle; padding-left: 50px;"  colspan="4">Produktai
-                      <button class="button button1" style="float: right; color: #FFFFFF; font-weight: 700; border-radius: 10px;" onclick="window.location.href='/insert'">
-                        Pridėti <img src="{{.Plius}}" style="width: 25px; height: 25px; float: left;" alt="Avatar">
-                    </button>
+                      <button class="button button1 " style="float: right; color: #FFFFFF; font-weight: 700; border-radius: 10px;" onclick="window.location.href='/insert'" title="Pridėti naują produktą">
+                        Pridėti <img src="{{.Plius}}" style="width: 25px; height: 25px; float: left;" alt="Avatar" >
+                  <!--      <span class="tooltiptext">Redaguoti šio produkto duomenis</span>-->
+                      </button>
                     
                     </th>
                    
@@ -605,17 +620,20 @@ body {
                   {{range .Records}}
                   <tr style="font-size: small; ">
                     
-                      <td style="font-size: small;" >{{.Pavadinimas}}</td>
-                      <td style="font-size: small;">{{.Kodas}}</td>
-                      <td style="font-size: small;">{{.Parduotuve_pav}}</td>
+                      <td style="font-size: smaller;" >{{.Pavadinimas}}</td>
+                      <td style="font-size: smaller;">{{.Kodas}}</td>
+                      <td style="font-size: smaller;">{{.Parduotuve_pav}}</td>
                       <td>
                         
-                         <form  action="/edit" method="post">
-                        <button name="id" value= "{{.ID}}" class="button button1" style="float: right; color: white; font-weight: 700; border-radius: 10px; padding-bottom: 9px; padding-top: 9px; vertical-align: middle; text-align: center;" type="submit">Redaguoti <img src="{{.Keisti}}" style="width: 20px; height: 20px; float: left;" alt="Avatar"></button>
+                         <form  action="/edit" method="post" >
+                        <button name="id" value= "{{.ID}}" class="button button1 " title="Redaguoti šį produktą" style="float: right; color: white; font-weight: 700; border-radius: 10px;  padding-bottom: 9px; padding-top: 9px; vertical-align: middle; text-align: center;" type="submit" >Redaguoti <img src="{{.Keisti}}" style="width: 20px; height: 20px; float: left;" alt="Avatar"></button>
+                      <!--  <span class="tooltiptext">Redaguoti šio produkto duomenis</span>-->
                         <input type="hidden" name="id" value= "{{.ID}}">
                       </form>
-                      <form action="/delete"  method="post">
-                        <button  class="button button2"  style="float: right; color: white; font-weight: 700; padding: 4px; vertical-align: middle; text-align: center; margin-right: 20px; border-radius: 10px;" type="button"   data-bs-toggle="modal" data-bs-target="#myModal" data-id="{{.ID}}" data-pavadinimas="{{.Pavadinimas}}">  Ištrinti <img src="{{.Minus}}" style="width: 30px; height: 30px; float: left;" alt="Avatar"></button>
+                      
+                      <form action="/delete"  method="post" >
+                        <button  class="button button2 " title="Šalinti šį produktą"  style="float: left; color: white; font-weight: 700; padding: 4px; vertical-align: middle; text-align: center; margin-right: 10px; border-radius: 10px;" type="button"   data-bs-toggle="modal" data-bs-target="#myModal" data-id="{{.ID}}" data-pavadinimas="{{.Pavadinimas}}">  Ištrinti <img src="{{.Minus}}" style="width: 30px; height: 30px; float: left;" alt="Avatar" title="Šalinti produktą"></button>
+                      <!--  <span class="tooltiptext">Ištrinti šį produktą</span>-->
                         <input type="hidden" name="id" value="{{.ID}}">
 
                       </form>

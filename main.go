@@ -70,8 +70,6 @@ func main() {
 			admindata(w, r)
 		case "/tikrinti":
 			barCodeHandler(w, r)
-		case "/logout":
-			clearSession(w, r)
 		default:
 			// Jei vartotojas nukreiptas į kitą URL, tai peradresuojame į pagrindinį puslapį
 			http.Redirect(w, r, "/homePage", http.StatusSeeOther)
